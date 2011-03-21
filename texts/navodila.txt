@@ -1,0 +1,31 @@
+Uravnoteževanje tipov bojevnikov v RPG igrah
+
+Ta seminarska naloga je primerna za navdušence internetnih RPG iger
+(MMORPG). V teh igrah se igralec najprej odloči za tip bojevnika (npr.
+bolj agresiven, vendar s slabšo obrambo ali tak z manjšo agresivnostjo
+in možnostjo samozdravljenja, itd.), s katerim se bo spopadal z
+drugimi igralci. Velik problem je ravnotežje teh tipov, saj se v
+večini primerov izkaže, da imajo nekateri tipi prednost pred ostalimi
+in lažje zmagujejo v neposrednih dvobojih. To seveda povzroča veliko
+nezadovoljstva med igralci.
+
+Vsak tip bojevnika je opisan z nekaj atributi (moč, inteligenca, itd.)
+ter z akcijami, ki jih ima na voljo (npr. različne vrste napadov).
+Uspešnost akcije je odvisna od vrednosti atributov in sreče (naključni
+faktor) pri izvedbi akcije. V seminarski nalogi bo potrebno najprej
+prirediti minimax algoritem za ta problem (upoštevanje naključnosti,
+možnih akcij posameznih tipov), s katerim boste odkrili optimalno
+strategijo za izbrani tip v dvoboju z nasprotnikom. Nato boste s
+poljubnim algoritmom optimizacije (npr. evolucijski algoritmi)
+poskušali poiskati take vrednosti atributov za vsak tip, ki vodijo do
+približno enakih možnosti za zmago (če bi se posluževali optimalne
+strategije), ne glede na to kateri tip bojevnika uporabljate.
+
+Seminarska je nadaljevanje lanskega dela, kjer so študenti že
+sprogramirali enostavno igrico in napisali minimax algoritem. Vaša
+naloga bo v optimizaciji minimax in učenju / nastavljanju parametrov
+posameznih bojevnikov, da bo igra bolj uravnotežena.
+
+Mentor: Martin Možina
+
+1-2 študenta, 1 skupina
