@@ -1,7 +1,7 @@
 import java.util.UUID;
 
 
-public abstract class Bojevnik {
+public abstract class Bojevnik implements Cloneable {
 	
 	private double LIFE_MAX;
 	private double ENERGY_MAX;
@@ -9,11 +9,10 @@ public abstract class Bojevnik {
 	private UUID ID;
 	
 	private String ime;
-	private double trpeznost;
 	
+	private double trpeznost;	
 	private double domet;
-	private double hitrost;
-	
+	private double hitrost;	
 	private double life;
 	private double energy;
 	
@@ -21,6 +20,13 @@ public abstract class Bojevnik {
 	private int pos_y;
 	
 	private int size;
+	
+	public Action action;
+	
+	 public Bojevnik clone() throws CloneNotSupportedException {
+		    return (Bojevnik) super.clone();
+		  }
+	
 	
 	/**
 	 * Konstruktor ustvari novega bojevnika.
@@ -58,7 +64,7 @@ public abstract class Bojevnik {
 		this.ID = UUID.randomUUID();
 	}	
 
-	private enum Move
+	public enum Move
 	{
 		UP,
 		RIGHT,
@@ -84,12 +90,17 @@ public abstract class Bojevnik {
 		return ( Math.abs( nasprotnik.getPos_x() - this.getPos_x() ) + Math.abs(nasprotnik.getPos_y() - this.getPos_y() ) / this.getSize() );
 	}
 	
-	private enum Action {
+	public enum Action {
 		FIRE1,
 		FIRE2,
 		SPECIAL,
-		PASS
+		PASS,
+		UP,
+		DOWN,
+		LEFT,
+		RIGHT
 	}
+	
 	
 	abstract void fire1(double reach, double energy, double min_damage, double max_damage);
 	abstract void fire2(double reach, double energy, double min_damage, double max_damage);
