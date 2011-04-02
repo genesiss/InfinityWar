@@ -2,10 +2,12 @@ package ui2.infinitywar.logic;
 
 public class Action {
 
+	
 	private String[] input_att_name;
 	private int[] input_att_delta;
 	private String[] output_att_name;
 	private int[] output_att_delta;
+
 	
 	/**
 	 * @param input_att_name
@@ -39,6 +41,8 @@ public class Action {
 	public int[] getOutAttDelta() {
 		return output_att_delta;
 	}
+	
+
 	
 	
 

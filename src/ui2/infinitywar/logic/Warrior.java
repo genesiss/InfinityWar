@@ -1,38 +1,57 @@
 package ui2.infinitywar.logic;
 
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-public class Warrior {
+import ui2.infinitywar.logic.simulateGame.State;
+
+public class Warrior{
 	
-	private final int LIFE_MAX = 100;
-	private final int ENERGY_MAX = 100;
+	public final int LIFE_MAX = 100;
+	public final int ENERGY_MAX = 100;
 	
-	private int pos_x;
-	private int pos_y;
+	public Map<String, Integer> attributes;
+	public List<Action> actions;
 	
-	private Map<String, Integer> attributes;
-	private List<Action> actions;
-	
-	private String name;
-	private int id;
+	public String name;
 	
 	private String error = "";
 	
-	private enum Direction {
-		UP,
-		DOWN,
-		LEFT,
-		RIGHT
-	}
-	
-	private boolean canMove(Direction d) {
+	public Warrior() {
+		actions = new LinkedList<Action>();
 		
-		return true;
+		String[] input_att_name = {"Energy", "Life", "pos_x"};
+		int[] input_att_delta = {-10, -5, 1};		
+		actions.add(new Action(input_att_name, input_att_delta, null, null));
+		
+		String[] input_att_name2 = {"Energy", "Life", "pos_x"};
+		int[] input_att_delta2 = {-10, -5, -1};				
+		actions.add(new Action(input_att_name2, input_att_delta2, null, null));
+		
+		String[] input_att_name3 = {"Energy", "Life", "pos_y"};
+		int[] input_att_delta3 = {-10, -5, -1};			
+		actions.add(new Action(input_att_name3, input_att_delta3, null, null));
+		
+		String[] input_att_name4 = {"Energy", "Life", "pos_y"};
+		int[] input_att_delta4 = {-10, -5, 1};			
+		actions.add(new Action(input_att_name4, input_att_delta4, null, null));
+		
+		
 	}
 	
-	private int action(Action a, Warrior opponent) {
+	
+	public Warrior returnClone() {
+		Warrior newWarrior = new Warrior();
+		newWarrior.attributes = new HashMap<String, Integer>(this.attributes);
+		newWarrior.actions = this.actions;
+		return newWarrior;
+	}
+	
+	
+	public int action(Action a, Warrior opponent) {
 		
 		if(!checkConstraints(a.getInAttName(), a.getInAttDelta())) {
 			return -1;
@@ -42,43 +61,20 @@ public class Warrior {
 			attributes.put(a.getInAttName()[i],attributes.get(a.getInAttName()[i])+a.getInAttDelta()[i]);
 		}
 		
-		
-		fightOpponent(a.getOutAttName(), a.getOutAttDelta());
+		if(a.getOutAttName() != null && a.getOutAttDelta() != null)
+			fightOpponent(a.getOutAttName(), a.getOutAttDelta(), opponent);
 		
 		
 		return 0;
 	}
 	
-	private void fightOpponent(String[] output_att_name, int[] output_att_delta) {
-		// TODO Auto-generated method stub
+	public void fightOpponent(String[] name, int[] delta, Warrior opponent) {
+		
+		for(int i=0; i<name.length; i++)
+			opponent.attributes.put(name[i], opponent.attributes.get(name[i])+delta[i]);
 		
 	}
 
-	
-	private int move(Direction d) {
-		
-		//check if can make a move in direction d
-		//check boundaries and emptiness of desired cell
-		if(!canMove(d))
-			return -1;
-		
-		switch(d) {
-			case UP:
-				this.pos_y-=1;
-				break;
-			case DOWN:
-				this.pos_y-=1;
-				break;
-			case LEFT:
-				this.pos_x-=1;
-				break;
-			case RIGHT:
-				this.pos_x+=1;
-				break;			
-		}
-		
-		return 0;
-	}
 	
 	private boolean checkConstraints(String[] att_name, int[] att_delta) {
 		
@@ -89,7 +85,7 @@ public class Warrior {
 		}
 		
 		//check if delta change is possible
-		for(int i = 0; i < att_name.length; i++)
+		for(int i = 0; i < att_name.length; i++) {
 			if(!attributes.containsKey(att_name[i])) {
 				this.error = "Attribute: "+att_name[i]+" doen't exists.";
 				return false;
@@ -99,7 +95,17 @@ public class Warrior {
 				this.error = "Delta change not possible: "+att_name[i]+": "+attributes.get(att_name[i])+" Delta: "+att_delta[i];
 				return false;
 			}
-		
+			
+			else if(att_name[i].equals("pos_x") && attributes.get(att_name[i])+att_delta[i] > simulateGame.x_size) {
+				this.error = "Delta change not possible: "+att_name[i]+": "+attributes.get(att_name[i])+" Delta: "+att_delta[i];
+				return false;
+			}
+			
+			else if(att_name[i].equals("pos_y") && attributes.get(att_name[i])+att_delta[i] > simulateGame.y_size) {
+				this.error = "Delta change not possible: "+att_name[i]+": "+attributes.get(att_name[i])+" Delta: "+att_delta[i];
+				return false;
+			}
+		}
 		
 		return true;
 	}
