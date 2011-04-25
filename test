@@ -1,0 +1,51 @@
+2
+----
+Mike
+Attributes:6
+	:size=5
+	:Life=1
+	:Energy=100
+	:Power=13
+	:pos_x=120
+	:pos_y=120
+Action1:2
+	:in_att:2
+		:Life=0
+		:Energy=-2
+	:out_att:3
+		:Life_min=5
+		:Life_max=30
+		:Distance=5
+Action2:2
+	:in_att:2
+		:Life=0
+		:Energy=-4
+	:out_att:3
+		:Life_min=5
+		:Life_max=20
+		:Distance=30
+----
+Rob
+Attributes:6
+	:size=5
+	:Life=100
+	:Energy=100
+	:Power=13
+	:pos_x=40
+	:pos_y=40
+Action1:2
+	:in_att:2
+		:Life=0
+		:Energy=-2
+	:out_att:3
+		:Life_min=40
+		:Life_max=50
+		:Distance=5
+Action2:2
+	:in_att:2
+		:Life=0
+		:Energy=-1
+	:out_att:3
+		:Life_min=15
+		:Life_max=20
+		:Distance=30

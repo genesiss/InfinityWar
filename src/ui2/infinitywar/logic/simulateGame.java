@@ -1,5 +1,6 @@
 package ui2.infinitywar.logic;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,6 +9,8 @@ public class simulateGame {
 	
 	public static int x_size=500;
 	public static int y_size=500;
+	
+	public HashMap<String, Integer> a = new HashMap<String, Integer>();
 	
 	public int cuts = 0;
 	
@@ -41,9 +44,26 @@ public class simulateGame {
 		this.y_size = y_size;
 	}
 	
+	public State runGame(State startState) {
+		State state = startState;
+		int i = 1;
+		while((state=chooseMove(state)).event != Events.ENDED) {
+			i++;
+			state.isMax=true;
+		}
+		if(startState.player1.name.equals(state.player2.name)) {
+			a.put(startState.player1.name, a.get(startState.player1.name)+1);
+		}
+		else
+			a.put(startState.player2.name, a.get(startState.player2.name)+1);
+		
+		System.out.println(startState.player2.name+":"+a.get(startState.player2.name)+"  "+startState.player1.name+":"+a.get(startState.player1.name));
+		return state;
+	}
+	
 	public State chooseMove(State startState) {	//player1 always on the move
 		minmax(startState, depth, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
-		System.out.println(cuts);
+		//System.out.println(cuts);
 		return bestMove(startState);
 	}
 
@@ -162,8 +182,8 @@ public class simulateGame {
 		retVal += (-1.0*yourLife/you.LIFE_MAX);
 		retVal += (0.1*myEnergy/me.ENERGY_MAX);
 		retVal += (-1.0*yourEnergy/you.ENERGY_MAX);
-		if(retVal > 0)
-			System.out.println(retVal);
+		//if(retVal > 0)
+			//System.out.println(retVal);
 		return retVal;
 		
 	}
