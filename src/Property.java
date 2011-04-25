@@ -3,6 +3,8 @@ import java.util.Random;
 
 public class Property {
 	
+	String name;
+	
 	double value;	//value of the property
 	
 	double INIT_VALUE; //value at initialization
@@ -24,7 +26,7 @@ public class Property {
 	 * @param HIGH_VAL
 	 * @param D_FACTOR
 	 */
-	public Property(double value, double INIT_VALUE, int LOW_VAL, int HIGH_VAL, int CLASS_LENGTH) {
+	public Property(double value, double INIT_VALUE, int LOW_VAL, int HIGH_VAL, int CLASS_LENGTH, String name) {
 		
 		this.value = value;
 		this.INIT_VALUE = INIT_VALUE;
@@ -33,6 +35,7 @@ public class Property {
 		this.CLASS_LENGTH = CLASS_LENGTH;
 		this.NUM_OF_CLASSES = getNumOfDiscClasses();
 		this.random = new Random();
+		this.name = name;
 		
 	}
 	

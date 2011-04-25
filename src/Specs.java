@@ -80,9 +80,12 @@ public class Specs {
 
 	private static Property getPropertyFromString(String line) {
 		StringTokenizer st = new StringTokenizer(line);
-		st.nextToken(); st.nextToken();
+		String name = st.nextToken();
+		name = name.substring(0, name.length()-1);
+		 st.nextToken();
 		
-		return new Property(Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()) );
+		return new Property(Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), name );
+
 	}
 	
 }

@@ -62,9 +62,9 @@ public class Warrior {
 		
 		
 		Warrior dolly = new Warrior(this.name, this.pos_x, this.pos_y, this.actions,
-				new Property(life.value, life.INIT_VALUE, life.LOW_VAL, life.HIGH_VAL, life.CLASS_LENGTH),
-				new Property(energy.value, energy.INIT_VALUE, energy.LOW_VAL, energy.HIGH_VAL, energy.CLASS_LENGTH),
-				new Property(speed.value, speed.INIT_VALUE, speed.LOW_VAL, speed.HIGH_VAL, speed.CLASS_LENGTH));
+				new Property(life.value, life.INIT_VALUE, life.LOW_VAL, life.HIGH_VAL, life.CLASS_LENGTH, "life"),
+				new Property(energy.value, energy.INIT_VALUE, energy.LOW_VAL, energy.HIGH_VAL, energy.CLASS_LENGTH, "energy"),
+				new Property(speed.value, speed.INIT_VALUE, speed.LOW_VAL, speed.HIGH_VAL, speed.CLASS_LENGTH, "speed"));
 		
 		dolly.goingSlow = this.goingSlow;
 		dolly.runningAway = this.runningAway;
@@ -80,9 +80,9 @@ public class Warrior {
 	public Warrior deepclone() {
 
 		Warrior dolly = new Warrior(this.name, this.pos_x, this.pos_y, this.actions,
-				new Property(life.value, life.INIT_VALUE, life.LOW_VAL, life.HIGH_VAL, life.CLASS_LENGTH),
-				new Property(energy.value, energy.INIT_VALUE, energy.LOW_VAL, energy.HIGH_VAL, energy.CLASS_LENGTH),
-				new Property(speed.value, speed.INIT_VALUE, speed.LOW_VAL, speed.HIGH_VAL, speed.CLASS_LENGTH));
+				new Property(life.value, life.INIT_VALUE, life.LOW_VAL, life.HIGH_VAL, life.CLASS_LENGTH, "life"),
+				new Property(energy.value, energy.INIT_VALUE, energy.LOW_VAL, energy.HIGH_VAL, energy.CLASS_LENGTH, "energy"),
+				new Property(speed.value, speed.INIT_VALUE, speed.LOW_VAL, speed.HIGH_VAL, speed.CLASS_LENGTH, "speed"));
 		
 		dolly.goingSlow = this.goingSlow;
 		dolly.runningAway = this.runningAway;
@@ -99,20 +99,20 @@ public class Warrior {
 			Action a = dolly.actions.get(it.next());
 			if(a.isMove) {
 				if(reachMove == null) {
-					reachMove = new Property(a.reach.value, a.reach.INIT_VALUE, a.reach.LOW_VAL, a.reach.HIGH_VAL, a.reach.CLASS_LENGTH);
-					maxdmgMove = new Property(a.maxdmg.value, a.maxdmg.INIT_VALUE, a.maxdmg.LOW_VAL, a.maxdmg.HIGH_VAL, a.maxdmg.CLASS_LENGTH);
-					mindmgMove = new Property(a.mindmg.value, a.mindmg.INIT_VALUE, a.mindmg.LOW_VAL, a.mindmg.HIGH_VAL, a.mindmg.CLASS_LENGTH);
-					energyNeededMove = new Property(a.energyNeeded.value, a.energyNeeded.INIT_VALUE, a.energyNeeded.LOW_VAL, a.energyNeeded.HIGH_VAL, a.energyNeeded.CLASS_LENGTH);
+					reachMove = new Property(a.reach.value, a.reach.INIT_VALUE, a.reach.LOW_VAL, a.reach.HIGH_VAL, a.reach.CLASS_LENGTH, "Move_reach");
+					maxdmgMove = new Property(a.maxdmg.value, a.maxdmg.INIT_VALUE, a.maxdmg.LOW_VAL, a.maxdmg.HIGH_VAL, a.maxdmg.CLASS_LENGTH, "Move_maxdmg");
+					mindmgMove = new Property(a.mindmg.value, a.mindmg.INIT_VALUE, a.mindmg.LOW_VAL, a.mindmg.HIGH_VAL, a.mindmg.CLASS_LENGTH, "Move_mindmg");
+					energyNeededMove = new Property(a.energyNeeded.value, a.energyNeeded.INIT_VALUE, a.energyNeeded.LOW_VAL, a.energyNeeded.HIGH_VAL, a.energyNeeded.CLASS_LENGTH, "Move_energyNeeded");
 				}
 				Action newAction = new Action(a.name, reachMove, maxdmgMove, mindmgMove, energyNeededMove);
 				newAction.isMove = true; newAction.d = a.d;
 				actionsCopy.put(newAction.name, newAction);
 			}
 			else {
-				Property reach = new Property(a.reach.value, a.reach.INIT_VALUE, a.reach.LOW_VAL, a.reach.HIGH_VAL, a.reach.CLASS_LENGTH);
-				Property maxdmg = new Property(a.maxdmg.value, a.maxdmg.INIT_VALUE, a.maxdmg.LOW_VAL, a.maxdmg.HIGH_VAL, a.maxdmg.CLASS_LENGTH);
-				Property mindmg = new Property(a.mindmg.value, a.mindmg.INIT_VALUE, a.mindmg.LOW_VAL, a.mindmg.HIGH_VAL, a.mindmg.CLASS_LENGTH);
-				Property energyNeeded = new Property(a.energyNeeded.value, a.energyNeeded.INIT_VALUE, a.energyNeeded.LOW_VAL, a.energyNeeded.HIGH_VAL, a.energyNeeded.CLASS_LENGTH);
+				Property reach = new Property(a.reach.value, a.reach.INIT_VALUE, a.reach.LOW_VAL, a.reach.HIGH_VAL, a.reach.CLASS_LENGTH, a.name+"_reach");
+				Property maxdmg = new Property(a.maxdmg.value, a.maxdmg.INIT_VALUE, a.maxdmg.LOW_VAL, a.maxdmg.HIGH_VAL, a.maxdmg.CLASS_LENGTH, a.name+"_maxdmg");
+				Property mindmg = new Property(a.mindmg.value, a.mindmg.INIT_VALUE, a.mindmg.LOW_VAL, a.mindmg.HIGH_VAL, a.mindmg.CLASS_LENGTH, a.name+"_mindmg");
+				Property energyNeeded = new Property(a.energyNeeded.value, a.energyNeeded.INIT_VALUE, a.energyNeeded.LOW_VAL, a.energyNeeded.HIGH_VAL, a.energyNeeded.CLASS_LENGTH, a.name+"_energyNeeded");
 				Action newAction = new Action(a.name, reach, maxdmg, mindmg, energyNeeded);
 				actionsCopy.put(newAction.name, newAction);
 			}
