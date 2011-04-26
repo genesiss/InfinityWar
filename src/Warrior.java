@@ -33,12 +33,61 @@ public class Warrior {
 	}
 	
 	/**
-	 * Create random warrior and change its properties according to props.
+	 * Change model Warrior according to properties in props.
 	 * @param props
 	 * @return
 	 */
-	public static Warrior warriorFromProps(HashMap<String, Property> props) {
-		return null;
+	public static Warrior warriorFromProps(HashMap<String, Property> props, Warrior model) {
+		
+		if(props.containsKey("life"))	model.life = props.get("life");
+		if(props.containsKey("energy")) model.energy = props.get("energy");
+		if(props.containsKey("speed")) 	model.speed = props.get("speed");
+		
+		Iterator<String> it;
+		
+		if(props.containsKey("Move_reach")) {
+			it = model.actions.keySet().iterator();
+			while(it.hasNext()) {
+				Action next = model.actions.get(it.next());
+				if(next.isMove) {
+					next.reach = props.get("Move_reach");
+					next.maxdmg = props.get("Move_maxdmg");
+					next.mindmg = props.get("Move_mindmg");
+					next.mindmg = props.get("Move_energyNeeded");
+				}
+			}
+		}
+		
+		if(props.containsKey("Pass_reach")) {
+			it = model.actions.keySet().iterator();
+			while(it.hasNext()) {
+				Action next = model.actions.get(it.next());
+				if(next.name.contains("Pass")) {
+					next.reach = props.get("Pass_reach");
+					next.maxdmg = props.get("Pass_maxdmg");
+					next.mindmg = props.get("Pass_mindmg");
+					next.mindmg = props.get("Pass_energyNeeded");
+					break;
+				}
+			}
+		}
+		
+		if(props.containsKey("Fire1_reach")) {
+			it = model.actions.keySet().iterator();
+			while(it.hasNext()) {
+				Action next = model.actions.get(it.next());
+				if(next.name.contains("Fire1")) {
+					next.reach = props.get("Fire1_reach");
+					next.maxdmg = props.get("Fire1_maxdmg");
+					next.mindmg = props.get("Fire1_mindmg");
+					next.mindmg = props.get("Fire1_energyNeeded");
+					break;
+				}
+			}
+		}
+		
+		
+		return model;
 	}
 	
 

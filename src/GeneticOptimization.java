@@ -122,8 +122,8 @@ public class GeneticOptimization extends OptimizationAlgorithm {
 		}
 		
 		for(int i = cuttingPoint1; i < chromosomesParent1.get(0).size(); i++) {
-			Property c1 = chromosomesParent1.get(0).get(i);
-			Property c2 = chromosomesParent2.get(0).get(i);
+			Property c1 = chromosomesParent2.get(0).get(i);
+			Property c2 = chromosomesParent1.get(0).get(i);
 			
 			child1GenesW1.put(c1.name, c1);
 			child2GenesW1.put(c2.name, c2);
@@ -138,15 +138,15 @@ public class GeneticOptimization extends OptimizationAlgorithm {
 		}
 		
 		for(int i = cuttingPoint2; i < chromosomesParent1.get(1).size(); i++) {
-			Property c1 = chromosomesParent1.get(1).get(i);
-			Property c2 = chromosomesParent2.get(1).get(i);
+			Property c1 = chromosomesParent2.get(1).get(i);
+			Property c2 = chromosomesParent1.get(1).get(i);
 			
 			child1GenesW2.put(c1.name, c1);
 			child2GenesW2.put(c2.name, c2);
 		}
 		
-		Individual child1 = new Individual(Warrior.warriorFromProps(child1GenesW1), Warrior.warriorFromProps(child1GenesW2));
-		Individual child2 = new Individual(Warrior.warriorFromProps(child2GenesW1), Warrior.warriorFromProps(child2GenesW2));
+		Individual child1 = new Individual(Warrior.warriorFromProps(child1GenesW1, parent1.w1.deepclone()), Warrior.warriorFromProps(child1GenesW2, parent1.w2.deepclone()));
+		Individual child2 = new Individual(Warrior.warriorFromProps(child2GenesW1, parent1.w1.deepclone()), Warrior.warriorFromProps(child2GenesW2, parent1.w2.deepclone()));
 		
 		ArrayList<Individual> children = new ArrayList<OptimizationAlgorithm.Individual>(2);
 		children.add(child1); children.add(child2);
