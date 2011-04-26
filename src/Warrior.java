@@ -32,6 +32,15 @@ public class Warrior {
 		
 	}
 	
+	/**
+	 * Create random warrior and change its properties according to props.
+	 * @param props
+	 * @return
+	 */
+	public static Warrior warriorFromProps(HashMap<String, Property> props) {
+		return null;
+	}
+	
 
 	/**
 	 * Construct new random Warrior 

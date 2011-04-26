@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 
 
@@ -101,9 +102,120 @@ public class GeneticOptimization extends OptimizationAlgorithm {
 
 	private ArrayList<Individual> crossover(Individual parent1, Individual parent2) {
 		
-		return null;
+		ArrayList<ArrayList<Property>> chromosomesParent1 = getChromosome(parent1);
+		ArrayList<ArrayList<Property>> chromosomesParent2 = getChromosome(parent2);
+		
+		int cuttingPoint1 = (int) (Math.random() * chromosomesParent1.get(0).size());
+		int cuttingPoint2 = (int) (Math.random() * chromosomesParent1.get(1).size());
+		
+		HashMap<String, Property> child1GenesW1 = new HashMap<String, Property>();
+		HashMap<String, Property> child2GenesW1 = new HashMap<String, Property>();
+		HashMap<String, Property> child1GenesW2 = new HashMap<String, Property>();
+		HashMap<String, Property> child2GenesW2 = new HashMap<String, Property>();
+		
+		for(int i = 0; i < cuttingPoint1; i++) {
+			Property c1 = chromosomesParent1.get(0).get(i);
+			Property c2 = chromosomesParent2.get(0).get(i);
+			
+			child1GenesW1.put(c1.name, c1);
+			child2GenesW1.put(c2.name, c2);
+		}
+		
+		for(int i = cuttingPoint1; i < chromosomesParent1.get(0).size(); i++) {
+			Property c1 = chromosomesParent1.get(0).get(i);
+			Property c2 = chromosomesParent2.get(0).get(i);
+			
+			child1GenesW1.put(c1.name, c1);
+			child2GenesW1.put(c2.name, c2);
+		}
+		
+		for(int i = 0; i < cuttingPoint2; i++) {
+			Property c1 = chromosomesParent1.get(1).get(i);
+			Property c2 = chromosomesParent2.get(1).get(i);
+			
+			child1GenesW2.put(c1.name, c1);
+			child2GenesW2.put(c2.name, c2);
+		}
+		
+		for(int i = cuttingPoint2; i < chromosomesParent1.get(1).size(); i++) {
+			Property c1 = chromosomesParent1.get(1).get(i);
+			Property c2 = chromosomesParent2.get(1).get(i);
+			
+			child1GenesW2.put(c1.name, c1);
+			child2GenesW2.put(c2.name, c2);
+		}
+		
+		Individual child1 = new Individual(Warrior.warriorFromProps(child1GenesW1), Warrior.warriorFromProps(child1GenesW2));
+		Individual child2 = new Individual(Warrior.warriorFromProps(child2GenesW1), Warrior.warriorFromProps(child2GenesW2));
+		
+		ArrayList<Individual> children = new ArrayList<OptimizationAlgorithm.Individual>(2);
+		children.add(child1); children.add(child2);
+		
+		return children;
 	}
 
+
+	private ArrayList<ArrayList<Property>> getChromosome(Individual ind) {
+		
+		ArrayList<Property> chromosome1 = new ArrayList<Property>();
+		ArrayList<Property> chromosome2 = new ArrayList<Property>();
+		
+		Warrior w1 = ind.w1;
+		Warrior w2 = ind.w2;
+		
+		chromosome1.add(w1.life); chromosome1.add(w1.energy); chromosome1.add(w1.speed);
+		chromosome2.add(w2.life); chromosome2.add(w2.energy); chromosome2.add(w2.speed);
+		
+		Iterator<String> it = w1.actions.keySet().iterator();
+		boolean moveAdded = false;
+		while(it.hasNext()) {
+			Action next = w1.actions.get(it.next());
+			
+			if(next.isMove && !moveAdded) {
+				chromosome1.add(next.reach);
+				chromosome1.add(next.maxdmg);
+				chromosome1.add(next.mindmg);
+				chromosome1.add(next.energyNeeded);
+				moveAdded = true;
+			}
+			else if(!next.isMove) {
+				chromosome1.add(next.reach);
+				chromosome1.add(next.maxdmg);
+				chromosome1.add(next.mindmg);
+				chromosome1.add(next.energyNeeded);
+			}
+			
+		}
+		
+		it = w2.actions.keySet().iterator();
+		moveAdded = false;
+		while(it.hasNext()) {
+			Action next = w2.actions.get(it.next());
+			
+			if(next.isMove && !moveAdded) {
+				chromosome2.add(next.reach);
+				chromosome2.add(next.maxdmg);
+				chromosome2.add(next.mindmg);
+				chromosome2.add(next.energyNeeded);
+				moveAdded = true;
+			}
+			else if(!next.isMove) {
+				chromosome2.add(next.reach);
+				chromosome2.add(next.maxdmg);
+				chromosome2.add(next.mindmg);
+				chromosome2.add(next.energyNeeded);
+			}
+			
+		}
+		
+		ArrayList<ArrayList<Property>> chromosomeArray = new ArrayList<ArrayList<Property>>();
+		chromosomeArray.add(chromosome1); chromosomeArray.add(chromosome2);
+		
+		return chromosomeArray;
+		
+		
+		
+	}
 
 	private void calcCumSum() {
 		

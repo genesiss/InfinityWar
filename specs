@@ -20,21 +20,21 @@ Tank 12 12
 -- Fire1_Energy_Needed: 20 20 20 20 1
 #
 Vojak 12 13
-- Life: 100 100 100 100 1
+- Life: 100 100 100 200 10
 - Energy: 100 100 100 100 1
 - Speed: 2 2 2 2 1
 - Move:
--- Reach: 99999 99999 99999 99999 1
--- Max_dmg: 0 0 0 0 1
--- Min_dmg: 0 0 0 0 1
--- Energy_Needed: 10 10 10 10 1
+-- Move_Reach: 99999 99999 99999 99999 1
+-- Move_Max_dmg: 0 0 0 0 1
+-- Move_Min_dmg: 0 0 0 0 1
+-- Move_Energy_Needed: 10 10 10 10 1
 - Pass:
--- Reach: 99999 99999 99999 99999 1
--- Max_dmg: 0 0 0 0 1
--- Min_dmg: 0 0 0 0 1
--- Energy_Needed: -20 -20 -20 -20 1
+-- Pass_Reach: 99999 99999 99999 99999 1
+-- Pass_Max_dmg: 0 0 0 0 1
+-- Pass_Min_dmg: 0 0 0 0 1
+-- Pass_Energy_Needed: -20 -20 -20 -20 1
 - Fire1:
--- Reach: 2 2 2 2 1
--- Max_dmg: 30 30 30 30 1
--- Min_dmg: 20 20 20 20 1
--- Energy_Needed: 20 20 20 20 1
+-- Fire1_Reach: 2 2 2 2 1
+-- Fire1_Max_dmg: 30 30 30 30 1
+-- Fire1_Min_dmg: 20 20 20 20 1
+-- Fire1_Energy_Needed: 20 20 20 20 1

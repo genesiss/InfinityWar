@@ -66,7 +66,7 @@ public class Specs {
 
 	private static Action getActionFromFile(BufferedReader in) throws IOException {
 		StringTokenizer st = new StringTokenizer(in.readLine());
-		st.nextToken(); String name = st.nextToken();
+		st.nextToken(); String name = st.nextToken(); name = name.substring(0, name.length()-1);
 		
 		Property reach = getPropertyFromString(in.readLine());
 		Property maxdmg = getPropertyFromString(in.readLine());
