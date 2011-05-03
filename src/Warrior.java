@@ -53,7 +53,7 @@ public class Warrior {
 					next.reach = props.get("Move_reach");
 					next.maxdmg = props.get("Move_maxdmg");
 					next.mindmg = props.get("Move_mindmg");
-					next.mindmg = props.get("Move_energyNeeded");
+					next.energyNeeded = props.get("Move_energyNeeded");
 				}
 			}
 		}
@@ -66,7 +66,7 @@ public class Warrior {
 					next.reach = props.get("Pass_reach");
 					next.maxdmg = props.get("Pass_maxdmg");
 					next.mindmg = props.get("Pass_mindmg");
-					next.mindmg = props.get("Pass_energyNeeded");
+					next.energyNeeded = props.get("Pass_energyNeeded");
 					break;
 				}
 			}
@@ -80,7 +80,7 @@ public class Warrior {
 					next.reach = props.get("Fire1_reach");
 					next.maxdmg = props.get("Fire1_maxdmg");
 					next.mindmg = props.get("Fire1_mindmg");
-					next.mindmg = props.get("Fire1_energyNeeded");
+					next.energyNeeded = props.get("Fire1_energyNeeded");
 					break;
 				}
 			}
@@ -167,12 +167,17 @@ public class Warrior {
 				actionsCopy.put(newAction.name, newAction);
 			}
 			else {
+				try {
 				Property reach = new Property(a.reach.value, a.reach.INIT_VALUE, a.reach.LOW_VAL, a.reach.HIGH_VAL, a.reach.CLASS_LENGTH, a.name+"_reach");
 				Property maxdmg = new Property(a.maxdmg.value, a.maxdmg.INIT_VALUE, a.maxdmg.LOW_VAL, a.maxdmg.HIGH_VAL, a.maxdmg.CLASS_LENGTH, a.name+"_maxdmg");
 				Property mindmg = new Property(a.mindmg.value, a.mindmg.INIT_VALUE, a.mindmg.LOW_VAL, a.mindmg.HIGH_VAL, a.mindmg.CLASS_LENGTH, a.name+"_mindmg");
 				Property energyNeeded = new Property(a.energyNeeded.value, a.energyNeeded.INIT_VALUE, a.energyNeeded.LOW_VAL, a.energyNeeded.HIGH_VAL, a.energyNeeded.CLASS_LENGTH, a.name+"_energyNeeded");
 				Action newAction = new Action(a.name, reach, maxdmg, mindmg, energyNeeded);
 				actionsCopy.put(newAction.name, newAction);
+				}
+				catch(Exception e) {
+					System.out.println();
+				}
 			}
 		}
 		
@@ -180,6 +185,22 @@ public class Warrior {
 		
 		return dolly;
 	
+	}
+	
+	@Override
+	public String toString() {
+		String out = this.name+" [x:"+this.pos_x+" y:"+this.pos_y+"]\n";
+		out += life.toString();
+		out += energy.toString();
+		out += speed.toString();
+		
+		Iterator<String> it = actions.keySet().iterator();
+		while(it.hasNext()) {
+			Action next = actions.get(it.next());
+			out += next.toString();
+		}
+		out+="--------------------------------\n";
+		return out;
 	}
 	
 }

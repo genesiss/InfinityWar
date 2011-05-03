@@ -74,7 +74,8 @@ public class Action {
 		me.energy.value -= this.energyNeeded.value;
 		
 		//change opponents life
-		you.life.value -= damage;
+		if(!this.isMove && this.energyNeeded.value > 0)
+			you.life.value -= damage;
 	
 		return true;
 
@@ -88,6 +89,7 @@ public class Action {
 			double distance = this.getDistance(me, you);
 			double delta = distance-this.reach.value;
 			double dmg =  this.mindmg.value + (random.nextDouble() * (this.maxdmg.value - this.mindmg.value));
+			if (dmg / Math.pow(2, delta) < 1) return 1;
 			return dmg / Math.pow(2, delta);
 		}
 	}
@@ -179,4 +181,13 @@ public class Action {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		String out = this.name+"\n";
+		out += reach.toString();
+		out += maxdmg.toString();
+		out += mindmg.toString();
+		out += energyNeeded.toString();
+		return out;
+	}
 }

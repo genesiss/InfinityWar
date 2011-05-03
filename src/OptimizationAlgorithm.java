@@ -13,6 +13,7 @@ public abstract class OptimizationAlgorithm {
 
 	public abstract void run();
 	protected abstract void saveState();
+	protected abstract void printStats();
 	
 	/**
 	 * Simulates games and returns average life difference between warriors.
@@ -26,8 +27,8 @@ public abstract class OptimizationAlgorithm {
 		double lifeDist = 0;
 		
 		for(int i = 0; i < games; i++) {
-			Warrior p1 = ind.w1.clone();
-			Warrior p2 = ind.w2.clone();
+			Warrior p1 = ind.w1.deepclone();
+			Warrior p2 = ind.w2.deepclone();
 			
 			State startState = null;
 			

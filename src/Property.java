@@ -124,6 +124,12 @@ public class Property {
 		return false; 
 	}
 	
+	@Override
+	public String toString() {
+		String out = this.name+": "+this.value+"\n";
+		return out;
+	}
+	
 	
 
 }

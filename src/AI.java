@@ -7,6 +7,7 @@ public class AI {
 	public static ArrayList<State> bestStates;
 	public static int depth;
 	public static int kk = 0;
+	public static State best = null;
 	
 	static double minimax (State n, int d) {
 		if( leaf(n) || d == 0) return evaluate(n);
@@ -21,7 +22,7 @@ public class AI {
 				if(VC > V) V = VC;
 				//if we are at root level, set the best child
 				if(d == AI.depth)
-					setBestState(V, child);
+					setBestState(child, VC);
 			}
 			return V;
 		}
@@ -40,37 +41,34 @@ public class AI {
 		
 	}
 	
-	static double alfabeta(State n, int d, double min, double max) {
+	static double alfabeta(State n, int d, double alfa, double beta) {
 		if( leaf(n) || d == 0) return evaluate(n);
 		
 		if(n.isMax) {
-			double V = min;
 			Iterator<Action> actions = n.player1.actions.values().iterator();
 			State child = null;
 			while((child=generateChild(n, actions, d)) != null) {
-				double VC = alfabeta(child, d-1, V, max);
-				kk++;
-				if(VC > V) V = VC;
+				double doAlfaBeta = alfabeta(child, d-1, alfa, beta);
 				//if we are at root level, set the best child
 				if(d == AI.depth)
-					setBestState(V, child);
+					setBestState(child, doAlfaBeta);
+				alfa = Math.max(alfa, doAlfaBeta);
+				kk++;
+				if(beta <= alfa) break;
 				
-				if(V > max)	return max;
 			}
-			return V;
+			return alfa;
 		}
 		
 		else {
-			double V = max;
 			Iterator<Action> actions = n.player1.actions.values().iterator();
 			State child = null;
 			while((child=generateChild(n, actions, -1)) != null) {
 				kk++;
-				double VC = alfabeta(child, d-1, min, V);
-				if(VC < V) V = VC;
-				if(V < min) return min;
+				beta = Math.min(beta, alfabeta(child, d-1, alfa, beta));
+				if(beta <= alfa)	break;
 			}
-			return V;
+			return beta;
 		}
 		
 	}
@@ -80,25 +78,29 @@ public class AI {
 	 * @param v
 	 * @param child
 	 */
-	private static void setBestState(double v, State child) {
+	private static void setBestState(State child, double alfa) {
+		
+		
 		if(AI.bestStates == null) {
+			AI.bestStates = new ArrayList<State>(); 
+			child.value = alfa;
+			bestStates.add(child);
+			return;
+		}
+		
+		else if(alfa > bestStates.get(0).value) {
 			AI.bestStates = new ArrayList<State>();
-			child.value = v;
+			child.value = alfa;
 			bestStates.add(child);
 		}
 		
-		else if(v > bestStates.get(0).value) {
-			AI.bestStates = new ArrayList<State>();
-			child.value = v;
+		else if(alfa == bestStates.get(0).value) {
+			child.value = alfa;
 			bestStates.add(child);
+			
 		}
 		
-		else if(v == bestStates.get(0).value) {
-			child.value = v;
-			bestStates.add(child);
-		}
-		
-		System.out.println(child.action.name+": "+v);
+		//System.out.println(child.action.name+": "+v);
 		
 	}
 
@@ -164,9 +166,10 @@ public class AI {
 		retVal += (0.1*myEnergy/me.energy.INIT_VALUE);
 		retVal += (-0.1*yourEnergy/you.energy.INIT_VALUE);
 		
-		retVal += 0.1*me.speed.value/me.speed.INIT_VALUE;
-		
+		retVal += -0.1 * (Math.sqrt(Math.pow(me.pos_x-you.pos_x,2) + Math.pow(me.pos_y-you.pos_y,2))) / (Math.sqrt(Math.pow(0-Game.sizeX,2) + Math.pow(0-Game.sizeY,2)));
 		//retVal += -0.1*(Math.abs(me.pos_x-you.pos_x)+Math.abs(me.pos_y-you.pos_y))/(double)(Game.sizeX+Game.sizeY);
+		
+		n.value = retVal;
 		
 		return retVal;
 		
