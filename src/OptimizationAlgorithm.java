@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 
@@ -42,13 +41,9 @@ public abstract class OptimizationAlgorithm {
 			
 		}
 		
-		ind.lifeDist.add(lifeDist);
-		double sum = 0;
-		for(double a : ind.lifeDist)	sum+=a;
-		sum = sum/ind.lifeDist.size();
+		ind.lifeDist = lifeDist;
 		ind.games = games;
-		ind.score = 1 / (sum/(double)games);	//so that bigger number means bigger score
-		ind.avgLifeDist = sum/(double)games;
+		ind.score = 1 / (lifeDist/(double)games);	//so that bigger number means bigger score
 	}
 	
 	/**
@@ -63,14 +58,12 @@ public abstract class OptimizationAlgorithm {
 		
 		public double score;
 		public double cumulativeScore;
-		public ArrayList<Double> lifeDist;
-		public double avgLifeDist;
+		public double lifeDist;
 		public int games;
 		
 		public Individual(Warrior w1, Warrior w2) {
 			this.w1 = w1;
 			this.w2 = w2;
-			lifeDist = new ArrayList<Double>();
 		}
 		
 	}
