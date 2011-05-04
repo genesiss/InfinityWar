@@ -59,8 +59,22 @@ public class GeneticOptimization extends OptimizationAlgorithm {
 	protected void saveState() {
 		Iterator<Individual> it = this.population.iterator();
 		Individual best = null; double bestScore = -1;
+		int i = 0;
 		while(it.hasNext()) {
 			Individual next = it.next();
+			try{
+			    // Create file 
+			    FileWriter fstream = new FileWriter("log//gen"+this.generationNumber+"Ind"+i);
+			        BufferedWriter out = new BufferedWriter(fstream);
+			    out.write(next.w1.toString()); out.write(next.w2.toString());
+			    out.write("Score: "+next.score+"\nLife Diff: "+next.avgLifeDist);
+			    out.write("\nGeneration: "+this.generationNumber);
+			    //Close the output stream
+			    out.close();
+			    }catch (Exception e){//Catch exception if any
+			      System.err.println("Error: " + e.getMessage());
+			    }
+			    i++;
 			if(next.score > bestScore) {
 				bestScore = next.score;
 				best = next;
@@ -74,7 +88,7 @@ public class GeneticOptimization extends OptimizationAlgorithm {
 			    FileWriter fstream = new FileWriter("bestState");
 			        BufferedWriter out = new BufferedWriter(fstream);
 			    out.write(overallBest.w1.toString()); out.write(overallBest.w2.toString());
-			    out.write("Score: "+overallBest.score+"\nLife Diff: "+overallBest.lifeDist/overallBest.games);
+			    out.write("Score: "+overallBest.score+"\nLife Diff: "+overallBest.avgLifeDist);
 			    out.write("\nGeneration: "+this.generationNumber);
 			    //Close the output stream
 			    out.close();
@@ -89,7 +103,7 @@ public class GeneticOptimization extends OptimizationAlgorithm {
 			    FileWriter fstream = new FileWriter("bestState");
 			        BufferedWriter out = new BufferedWriter(fstream);
 			    out.write(overallBest.w1.toString()); out.write(overallBest.w2.toString());
-			    out.write("Score: "+overallBest.score+"\nLife Diff: "+overallBest.lifeDist/overallBest.games);
+			    out.write("Score: "+overallBest.score+"\nLife Diff: "+overallBest.avgLifeDist);
 			    out.write("\nGeneration: "+this.generationNumber);
 			    //Close the output stream
 			    out.close();
@@ -118,8 +132,11 @@ public class GeneticOptimization extends OptimizationAlgorithm {
 		ArrayList<Individual> children = new ArrayList<OptimizationAlgorithm.Individual>(this.POPULATION_SIZE);
 		
 		//elite
-		for(int i = 0; i < this.POPULATION_SIZE*this.ELITE_FACTOR; i++)
-			children.add(new Individual(population.get(i).w1.deepclone(), population.get(i).w2.deepclone()));
+		for(int i = 0; i < this.POPULATION_SIZE*this.ELITE_FACTOR; i++) {
+			Individual ind = new Individual(population.get(i).w1.deepclone(), population.get(i).w2.deepclone());
+			ind.lifeDist = population.get(i).lifeDist;
+			children.add(ind);
+		}
 		
 		
 		
@@ -360,15 +377,15 @@ public class GeneticOptimization extends OptimizationAlgorithm {
 			if(bestInGen == null)	bestInGen = next;
 			else if(bestInGen.score < next.score)	bestInGen = next;
 			score += next.score;
-			lifeDiff += next.lifeDist/next.games;
+			lifeDiff += next.avgLifeDist;
 		}
 		
-		System.out.println(this.generationNumber+": "+score+" LifeDiff: "+lifeDiff/this.population.size()+" Best: "+bestInGen.lifeDist/bestInGen.games);
+		System.out.println(this.generationNumber+": "+score+" LifeDiff: "+lifeDiff/this.population.size()+" Best: "+bestInGen.avgLifeDist);
 		try{
 		    // Create file 
 		    FileWriter fstream = new FileWriter("geneticOut", true);
 		        BufferedWriter out = new BufferedWriter(fstream);
-		    out.write(this.generationNumber+": "+score+" LifeDiff: "+lifeDiff/this.population.size()+" Best: "+bestInGen.lifeDist/bestInGen.games+"\n");
+		    out.write(this.generationNumber+": "+score+" LifeDiff: "+lifeDiff/this.population.size()+" Best: "+bestInGen.avgLifeDist+"\n");
 		    //Close the output stream
 		    out.close();
 		    }catch (Exception e){//Catch exception if any

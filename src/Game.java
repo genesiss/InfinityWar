@@ -50,7 +50,7 @@ public class Game extends AI {
 	}
 	
 	private State getBest() {
-		return AI.bestStates.get((int) (Math.random() * (AI.bestStates.size()-1)));
+		return AI.bestStates.get(0);
 	}
 
 	private void printState(State s) {

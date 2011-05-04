@@ -1,0 +1,73 @@
+Tank [x:12 y:12]
+life: 195.0
+energy: 100.0
+speed: 3.0
+RIGHT
+Move_reach: 99999.0
+Move_maxdmg: 0.0
+Move_mindmg: 0.0
+Move_energyNeeded: 15.0
+Fire1
+Fire1_reach: 4.0
+Fire1_maxdmg: 45.0
+Fire1_mindmg: 23.0
+Fire1_energyNeeded: 40.0
+DOWN
+Move_reach: 99999.0
+Move_maxdmg: 0.0
+Move_mindmg: 0.0
+Move_energyNeeded: 15.0
+UP
+Move_reach: 99999.0
+Move_maxdmg: 0.0
+Move_mindmg: 0.0
+Move_energyNeeded: 15.0
+LEFT
+Move_reach: 99999.0
+Move_maxdmg: 0.0
+Move_mindmg: 0.0
+Move_energyNeeded: 15.0
+Pass
+Pass_reach: 99999.0
+Pass_maxdmg: 0.0
+Pass_mindmg: 0.0
+Pass_energyNeeded: -9.0
+--------------------------------
+Vojak [x:12 y:14]
+life: 120.0
+energy: 150.0
+speed: 4.0
+RIGHT
+Move_reach: 99999.0
+Move_maxdmg: 0.0
+Move_mindmg: 0.0
+Move_energyNeeded: 10.0
+Fire1
+Fire1_reach: 2.0
+Fire1_maxdmg: 20.0
+Fire1_mindmg: 10.0
+Fire1_energyNeeded: 10.0
+DOWN
+Move_reach: 99999.0
+Move_maxdmg: 0.0
+Move_mindmg: 0.0
+Move_energyNeeded: 10.0
+UP
+Move_reach: 99999.0
+Move_maxdmg: 0.0
+Move_mindmg: 0.0
+Move_energyNeeded: 10.0
+LEFT
+Move_reach: 99999.0
+Move_maxdmg: 0.0
+Move_mindmg: 0.0
+Move_energyNeeded: 10.0
+Pass
+Pass_reach: 99999.0
+Pass_maxdmg: 0.0
+Pass_mindmg: 0.0
+Pass_energyNeeded: -24.0
+--------------------------------
+Score: 0.00949567436059094
+Life Diff: 105.3111092509882
+Generation: 880
