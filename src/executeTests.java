@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 
@@ -9,10 +10,10 @@ public class executeTests {
 		
 		Warrior roleModel1 = warriors.get(0);
 		Warrior roleModel2 = warriors.get(1);
-		final int POPULATION_SIZE = 15;
-		final int MINMAX_DEPTH = 3;
-		final int GAME_PER_INDIVIDUAL_REPEAT = 20;
-		final double MUTATION_FACTOR = 0.25;
+		final int POPULATION_SIZE = 25;
+		final int MINMAX_DEPTH = 1;
+		final int GAME_PER_INDIVIDUAL_REPEAT = 2;
+		final double MUTATION_FACTOR = 0.1;
 		final double ELITE_FACTOR = 0.2;
 		final boolean ALFABETA = true;
 		
@@ -26,7 +27,12 @@ public class executeTests {
 				MUTATION_FACTOR,
 				ELITE_FACTOR,
 				ALFABETA);
-		genetic.run();
+		//genetic.run();
+		
+		ArrayList<OptimizationAlgorithm.Individual> seeds = Specs.readSpecsForSeeds("initPop//ind", POPULATION_SIZE, genetic);
+		HillClimbing hill = new HillClimbing(warriors.get(0), warriors.get(1), GAME_PER_INDIVIDUAL_REPEAT, ALFABETA, MINMAX_DEPTH, seeds);
+		hill.run();
+		
 	
 	}
 

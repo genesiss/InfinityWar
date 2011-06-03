@@ -83,8 +83,12 @@ public class Action {
 	}
 
 	private double calculateDamage(Warrior me, Warrior you) {
-		if(checkReach(me, you))
-			return this.mindmg.value + (random.nextDouble() * (this.maxdmg.value - this.mindmg.value));
+		if(checkReach(me, you)) {
+			double r = random.nextDouble();
+			if(r < 0.5)	return this.mindmg.value;
+			else return this.maxdmg.value;
+			//return this.mindmg.value + (random.nextDouble() * (this.maxdmg.value - this.mindmg.value));
+		}
 		else {
 			double distance = this.getDistance(me, you);
 			double delta = distance-this.reach.value;

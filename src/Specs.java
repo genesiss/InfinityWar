@@ -1,9 +1,11 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
+
 
 
 public class Specs {
@@ -86,6 +88,33 @@ public class Specs {
 		
 		return new Property(Double.parseDouble(st.nextToken()), Double.parseDouble(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()), name );
 
+	}
+
+	public static ArrayList<OptimizationAlgorithm.Individual> readSpecsForSeeds(String name, int pop_size, GeneticOptimization genetic) {
+		ArrayList<OptimizationAlgorithm.Individual> seeds = new ArrayList<OptimizationAlgorithm.Individual>();
+		try {
+		    BufferedReader in = new BufferedReader(new FileReader("initPop//scores"));
+		for(int i = 0; i < pop_size; i++) {
+			LinkedList<Warrior> currWarriors = readSpecs(name+i);
+			OptimizationAlgorithm.Individual ind = genetic.new Individual(currWarriors.get(0), currWarriors.get(1));
+			String line = in.readLine();
+			StringTokenizer st = new StringTokenizer(line);
+			double d = Double.parseDouble(st.nextToken());
+			ind.score = d;
+			d = Double.parseDouble(st.nextToken());
+			ind.cumulativeScore = d;
+			d = Double.parseDouble(st.nextToken());
+			ind.lifeDist = d;
+			int j = Integer.parseInt(st.nextToken());
+			ind.games = j;
+			seeds.add(ind);
+		};
+	} catch (Exception e) {
+		// TODO: handle exception
+	}
+	
+	return seeds;
+	
 	}
 	
 }

@@ -44,15 +44,102 @@ public class GeneticOptimization extends OptimizationAlgorithm {
 	public void run() {
 		
 		chooseInitialPopulation(this.POPULATION_SIZE);	//choose initial population with POPULATION_SIZE individuals
+		boolean initial = true;
 		
 		while(true) {
 			evaluation();
+			if(initial) {
+				initial = false;
+				printInitialPopilation();
+				printInitialScores();
+			}
 			printStats();
 			saveState();	//saves current state
 			reproduction();	//currently without elitism! 
 			generationNumber++;
 		}
 
+	}
+
+	private void printInitialScores() {
+		try{
+		    FileWriter fstream = new FileWriter("initPop//scores");
+		    BufferedWriter out = new BufferedWriter(fstream);	
+		    for(Individual i : this.population) {
+					    
+			    out.write(i.score+" "+i.cumulativeScore+" "+i.lifeDist+" "+i.games+"\n");		        
+			    
+			    
+		    }
+		    out.close();
+		}catch (Exception e){//Catch exception if any
+		      System.err.println("Error: " + e.getMessage());
+		    }
+		
+	}
+
+	private void printInitialPopilation() {
+		int j = 0;
+		for(Individual i : this.population) {
+			try{
+			    FileWriter fstream = new FileWriter("initPop//ind"+j);
+			        BufferedWriter out = new BufferedWriter(fstream);
+			        out.write("2\n");
+			        out.write(i.w1.name+" "+i.w1.pos_x+" "+i.w1.pos_y+"\n");
+			        out.write("- life: "+i.w1.life.value+" "+i.w1.life.INIT_VALUE+" "+i.w1.life.LOW_VAL+" "+i.w1.life.HIGH_VAL+" "+i.w1.life.CLASS_LENGTH+"\n");
+			        out.write("- Energy: "+i.w1.energy.value+" "+i.w1.energy.INIT_VALUE+" "+i.w1.energy.LOW_VAL+" "+i.w1.energy.HIGH_VAL+" "+i.w1.energy.CLASS_LENGTH+"\n");
+			        out.write("- Speed: "+i.w1.speed.value+" "+i.w1.speed.INIT_VALUE+" "+i.w1.speed.LOW_VAL+" "+i.w1.speed.HIGH_VAL+" "+i.w1.speed.CLASS_LENGTH+"\n");
+			        out.write("- Move:\n");
+			        Action a = i.w1.actions.get("RIGHT");
+			        out.write("-- "+"Move_Reach"+": "+a.reach.value+" "+a.reach.INIT_VALUE+" "+a.reach.LOW_VAL+" "+a.reach.HIGH_VAL+" "+a.reach.CLASS_LENGTH+"\n");
+			        out.write("-- "+"Move_Max_dmg"+": "+a.maxdmg.value+" "+a.maxdmg.INIT_VALUE+" "+a.maxdmg.LOW_VAL+" "+a.maxdmg.HIGH_VAL+" "+a.maxdmg.CLASS_LENGTH+"\n");
+			        out.write("-- "+"Move_Min_dmg"+": "+a.mindmg.value+" "+a.mindmg.INIT_VALUE+" "+a.mindmg.LOW_VAL+" "+a.mindmg.HIGH_VAL+" "+a.mindmg.CLASS_LENGTH+"\n");
+			        out.write("-- "+"Move_Energy_Needed"+": "+a.energyNeeded.value+" "+a.energyNeeded.INIT_VALUE+" "+a.energyNeeded.LOW_VAL+" "+a.energyNeeded.HIGH_VAL+" "+a.energyNeeded.CLASS_LENGTH+"\n");
+			        out.write("- Pass:\n");
+			        a = i.w1.actions.get("Pass");
+			        out.write("-- "+"Pass_Reach"+": "+a.reach.value+" "+a.reach.INIT_VALUE+" "+a.reach.LOW_VAL+" "+a.reach.HIGH_VAL+" "+a.reach.CLASS_LENGTH+"\n");
+			        out.write("-- "+"Pass_Max_dmg"+": "+a.maxdmg.value+" "+a.maxdmg.INIT_VALUE+" "+a.maxdmg.LOW_VAL+" "+a.maxdmg.HIGH_VAL+" "+a.maxdmg.CLASS_LENGTH+"\n");
+			        out.write("-- "+"Pass_Min_dmg"+": "+a.mindmg.value+" "+a.mindmg.INIT_VALUE+" "+a.mindmg.LOW_VAL+" "+a.mindmg.HIGH_VAL+" "+a.mindmg.CLASS_LENGTH+"\n");
+			        out.write("-- "+"Pass_Energy_Needed"+": "+a.energyNeeded.value+" "+a.energyNeeded.INIT_VALUE+" "+a.energyNeeded.LOW_VAL+" "+a.energyNeeded.HIGH_VAL+" "+a.energyNeeded.CLASS_LENGTH+"\n");
+			        out.write("- Fire1:\n");
+			        a = i.w1.actions.get("Fire1");
+			        out.write("-- "+"Fire1_Reach"+": "+a.reach.value+" "+a.reach.INIT_VALUE+" "+a.reach.LOW_VAL+" "+a.reach.HIGH_VAL+" "+a.reach.CLASS_LENGTH+"\n");
+			        out.write("-- "+"Fire1_Max_dmg"+": "+a.maxdmg.value+" "+a.maxdmg.INIT_VALUE+" "+a.maxdmg.LOW_VAL+" "+a.maxdmg.HIGH_VAL+" "+a.maxdmg.CLASS_LENGTH+"\n");
+			        out.write("-- "+"Fire1_Min_dmg"+": "+a.mindmg.value+" "+a.mindmg.INIT_VALUE+" "+a.mindmg.LOW_VAL+" "+a.mindmg.HIGH_VAL+" "+a.mindmg.CLASS_LENGTH+"\n");
+			        out.write("-- "+"Fire1_Energy_Needed"+": "+a.energyNeeded.value+" "+a.energyNeeded.INIT_VALUE+" "+a.energyNeeded.LOW_VAL+" "+a.energyNeeded.HIGH_VAL+" "+a.energyNeeded.CLASS_LENGTH+"\n");
+			        out.write("#\n");
+			        
+			        out.write(i.w2.name+" "+i.w2.pos_x+" "+i.w2.pos_y+"\n");
+			        out.write("- life: "+i.w2.life.value+" "+i.w2.life.INIT_VALUE+" "+i.w2.life.LOW_VAL+" "+i.w2.life.HIGH_VAL+" "+i.w2.life.CLASS_LENGTH+"\n");
+			        out.write("- Energy: "+i.w2.energy.value+" "+i.w2.energy.INIT_VALUE+" "+i.w2.energy.LOW_VAL+" "+i.w2.energy.HIGH_VAL+" "+i.w2.energy.CLASS_LENGTH+"\n");
+			        out.write("- Speed: "+i.w2.speed.value+" "+i.w2.speed.INIT_VALUE+" "+i.w2.speed.LOW_VAL+" "+i.w2.speed.HIGH_VAL+" "+i.w2.speed.CLASS_LENGTH+"\n");
+			        out.write("- Move:\n");
+			        a = i.w2.actions.get("RIGHT");
+			        out.write("-- "+"Move_Reach"+": "+a.reach.value+" "+a.reach.INIT_VALUE+" "+a.reach.LOW_VAL+" "+a.reach.HIGH_VAL+" "+a.reach.CLASS_LENGTH+"\n");
+			        out.write("-- "+"Move_Max_dmg"+": "+a.maxdmg.value+" "+a.maxdmg.INIT_VALUE+" "+a.maxdmg.LOW_VAL+" "+a.maxdmg.HIGH_VAL+" "+a.maxdmg.CLASS_LENGTH+"\n");
+			        out.write("-- "+"Move_Min_dmg"+": "+a.mindmg.value+" "+a.mindmg.INIT_VALUE+" "+a.mindmg.LOW_VAL+" "+a.mindmg.HIGH_VAL+" "+a.mindmg.CLASS_LENGTH+"\n");
+			        out.write("-- "+"Move_Energy_Needed"+": "+a.energyNeeded.value+" "+a.energyNeeded.INIT_VALUE+" "+a.energyNeeded.LOW_VAL+" "+a.energyNeeded.HIGH_VAL+" "+a.energyNeeded.CLASS_LENGTH+"\n");
+			        a = i.w1.actions.get("Pass");
+			        out.write("- Pass:\n");
+			        out.write("-- "+"Pass_Reach"+": "+a.reach.value+" "+a.reach.INIT_VALUE+" "+a.reach.LOW_VAL+" "+a.reach.HIGH_VAL+" "+a.reach.CLASS_LENGTH+"\n");
+			        out.write("-- "+"Pass_Max_dmg"+": "+a.maxdmg.value+" "+a.maxdmg.INIT_VALUE+" "+a.maxdmg.LOW_VAL+" "+a.maxdmg.HIGH_VAL+" "+a.maxdmg.CLASS_LENGTH+"\n");
+			        out.write("-- "+"Pass_Min_dmg"+": "+a.mindmg.value+" "+a.mindmg.INIT_VALUE+" "+a.mindmg.LOW_VAL+" "+a.mindmg.HIGH_VAL+" "+a.mindmg.CLASS_LENGTH+"\n");
+			        out.write("-- "+"Pass_Energy_Needed"+": "+a.energyNeeded.value+" "+a.energyNeeded.INIT_VALUE+" "+a.energyNeeded.LOW_VAL+" "+a.energyNeeded.HIGH_VAL+" "+a.energyNeeded.CLASS_LENGTH+"\n");
+			        a = i.w1.actions.get("Fire1");
+			        out.write("- Fire1:\n");
+			        out.write("-- "+"Fire1_Reach"+": "+a.reach.value+" "+a.reach.INIT_VALUE+" "+a.reach.LOW_VAL+" "+a.reach.HIGH_VAL+" "+a.reach.CLASS_LENGTH+"\n");
+			        out.write("-- "+"Fire1_Max_dmg"+": "+a.maxdmg.value+" "+a.maxdmg.INIT_VALUE+" "+a.maxdmg.LOW_VAL+" "+a.maxdmg.HIGH_VAL+" "+a.maxdmg.CLASS_LENGTH+"\n");
+			        out.write("-- "+"Fire1_Min_dmg"+": "+a.mindmg.value+" "+a.mindmg.INIT_VALUE+" "+a.mindmg.LOW_VAL+" "+a.mindmg.HIGH_VAL+" "+a.mindmg.CLASS_LENGTH+"\n");
+			        out.write("-- "+"Fire1_Energy_Needed"+": "+a.energyNeeded.value+" "+a.energyNeeded.INIT_VALUE+" "+a.energyNeeded.LOW_VAL+" "+a.energyNeeded.HIGH_VAL+" "+a.energyNeeded.CLASS_LENGTH);
+
+			    //Close the output stream
+			    out.close();
+			    j++;
+			    }catch (Exception e){//Catch exception if any
+			      System.err.println("Error: " + e.getMessage());
+			    }
+		}
+		
 	}
 
 	@Override
@@ -255,7 +342,7 @@ public class GeneticOptimization extends OptimizationAlgorithm {
 	}
 
 
-	private ArrayList<ArrayList<Property>> getChromosome(Individual ind) {
+	protected static ArrayList<ArrayList<Property>> getChromosome(Individual ind) {
 		
 		ArrayList<Property> chromosome1 = new ArrayList<Property>();
 		ArrayList<Property> chromosome2 = new ArrayList<Property>();
@@ -388,6 +475,6 @@ public class GeneticOptimization extends OptimizationAlgorithm {
 		    }catch (Exception e){//Catch exception if any
 		      System.err.println("Error: " + e.getMessage());
 		    }
-	}
+	} 
 
 }

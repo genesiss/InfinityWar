@@ -1,0 +1,21 @@
+Naslov: Uravnoteževanje tipov bojevnikov v RPG igrah
+Predmet: Umetna inteligenca 2
+Mentor: Martin Možina
+Avtorja: Daniel Rižnar, Uroš Kosič
+
+-------------------------------
+
+UVOD
+Opis domene
+RPG (role-playing game) ali igra igranja vlog je izraz za igre, v katerih igralci prevzamejo vloge namišljenih likov, postavljenih v domišljijsko okolje. Bodisi z neposrednim igranjem, bodisi z opisovanjem njihovih dejanj nato igrajo te vloge v zgodbi, ki je lahko vnaprej začrtana ali pa nastaja sproti. Uspeh ali neuspeh njihovih dejanj določa dogovorjen sistem pravil konkretne igre. (http://sl.wikipedia.org/wiki/Igra_igranja_vlog) Velik problem je ravnotežje različnih likov, saj se v večini primerov izkaže, da imajo nekateri liki prednost pred ostalimi in lažje zmagujejo v neposrednih dvobojih.
+
+Posamezna RPG igra ponuja izbiro med več različnimi bojevniki, vsak ima svoje prednosti in slabosti. Za potrebe naše seminarske naloge smo se omejili na 2 bojevnika in omejeno število lastnosti. Bolj podrobno so bojevniki in njihove lastnosti opisani v nadaljevanju.
+
+Opis naloge
+Nalogo lahko razdelima na dva dela. V prvem se ukvarjamo z implementacijo minimax algoritma, s katerim odkrivamo optimalno strategijo za izbrani tip v dvoboju z nasprotnikom. Algoritem minimax je bilo potrebno prirediti tako, da je upošteval naključnost (moč udarca nasprotnika se določi naključno znotraj definiranih mej) in možne akcije posameznega bojevnika. V drugem delu smo uporabili genetske algoritme za razvoj dveh različnih a uravnoteženih bojevnikov. Uravnoteženost smo ugotavljajo z uporabo minimax algoritma. Za optimizacijo smo implementirali tudi algoritem hill climbing. Na koncu smo primerjali rezultate obeh optimizacijskih algoritmov, predstavili nekaj zanimivih opazk, ter podali probleme s katerimi smo se srečali pri delu.
+
+OPREDELITEV PROBLEMA
+
+
+
+

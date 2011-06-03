@@ -19,12 +19,12 @@ public class test {
 		Game g = new Game(500, 500);
 		State startState = new State(roleModel1, roleModel2, true);
 		double a = 0;
-		int i = 0;
+		int i = 1;
 		while(true) {
-		while(i < 100) {
+		while(i <= 40) {
 			i++;
 			g = new Game(500, 500);
-		a =  g.simulateGame(startState, 2, true);
+		a +=  g.simulateGame(startState, 4, true);
 		warriors = Specs.readSpecs("specs");
 		startState = new State(warriors.get(0), warriors.get(1), true);
 		
@@ -32,6 +32,7 @@ public class test {
 		
 		System.out.println(a/i);
 		i=0;
+		a=0;
 		}
 
 	}
