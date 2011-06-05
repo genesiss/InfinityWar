@@ -119,13 +119,13 @@ public class GeneticOptimization extends OptimizationAlgorithm {
 			        out.write("-- "+"Move_Max_dmg"+": "+a.maxdmg.value+" "+a.maxdmg.INIT_VALUE+" "+a.maxdmg.LOW_VAL+" "+a.maxdmg.HIGH_VAL+" "+a.maxdmg.CLASS_LENGTH+"\n");
 			        out.write("-- "+"Move_Min_dmg"+": "+a.mindmg.value+" "+a.mindmg.INIT_VALUE+" "+a.mindmg.LOW_VAL+" "+a.mindmg.HIGH_VAL+" "+a.mindmg.CLASS_LENGTH+"\n");
 			        out.write("-- "+"Move_Energy_Needed"+": "+a.energyNeeded.value+" "+a.energyNeeded.INIT_VALUE+" "+a.energyNeeded.LOW_VAL+" "+a.energyNeeded.HIGH_VAL+" "+a.energyNeeded.CLASS_LENGTH+"\n");
-			        a = i.w1.actions.get("Pass");
+			        a = i.w2.actions.get("Pass");
 			        out.write("- Pass:\n");
 			        out.write("-- "+"Pass_Reach"+": "+a.reach.value+" "+a.reach.INIT_VALUE+" "+a.reach.LOW_VAL+" "+a.reach.HIGH_VAL+" "+a.reach.CLASS_LENGTH+"\n");
 			        out.write("-- "+"Pass_Max_dmg"+": "+a.maxdmg.value+" "+a.maxdmg.INIT_VALUE+" "+a.maxdmg.LOW_VAL+" "+a.maxdmg.HIGH_VAL+" "+a.maxdmg.CLASS_LENGTH+"\n");
 			        out.write("-- "+"Pass_Min_dmg"+": "+a.mindmg.value+" "+a.mindmg.INIT_VALUE+" "+a.mindmg.LOW_VAL+" "+a.mindmg.HIGH_VAL+" "+a.mindmg.CLASS_LENGTH+"\n");
 			        out.write("-- "+"Pass_Energy_Needed"+": "+a.energyNeeded.value+" "+a.energyNeeded.INIT_VALUE+" "+a.energyNeeded.LOW_VAL+" "+a.energyNeeded.HIGH_VAL+" "+a.energyNeeded.CLASS_LENGTH+"\n");
-			        a = i.w1.actions.get("Fire1");
+			        a = i.w2.actions.get("Fire1");
 			        out.write("- Fire1:\n");
 			        out.write("-- "+"Fire1_Reach"+": "+a.reach.value+" "+a.reach.INIT_VALUE+" "+a.reach.LOW_VAL+" "+a.reach.HIGH_VAL+" "+a.reach.CLASS_LENGTH+"\n");
 			        out.write("-- "+"Fire1_Max_dmg"+": "+a.maxdmg.value+" "+a.maxdmg.INIT_VALUE+" "+a.maxdmg.LOW_VAL+" "+a.maxdmg.HIGH_VAL+" "+a.maxdmg.CLASS_LENGTH+"\n");

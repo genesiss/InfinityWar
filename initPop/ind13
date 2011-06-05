@@ -32,9 +32,9 @@ Vojak 12 21
 -- Pass_Reach: 99999.0 99999.0 99999 99999 1
 -- Pass_Max_dmg: 0.0 0.0 0 0 1
 -- Pass_Min_dmg: 0.0 0.0 0 0 1
--- Pass_Energy_Needed: -5.0 -5.0 -10 -5 1
+-- Pass_Energy_Needed: -10.0 -10.0 -15 -10 1
 - Fire1:
--- Fire1_Reach: 8.0 8.0 3 8 1
--- Fire1_Max_dmg: 35.0 35.0 30 50 5
--- Fire1_Min_dmg: 25.0 25.0 20 25 1
--- Fire1_Energy_Needed: 35.0 35.0 25 40 5
+-- Fire1_Reach: 4.0 4.0 1 5 1
+-- Fire1_Max_dmg: 30.0 30.0 20 30 2
+-- Fire1_Min_dmg: 12.0 12.0 10 20 2
+-- Fire1_Energy_Needed: 17.0 17.0 15 25 2
