@@ -11,6 +11,8 @@ public class Game extends AI {
 	
 	public double lifeDist = 0;
 	
+	public boolean tie = false;
+	
 	public LinkedList<Action> actionPath = new LinkedList<Action>();
 	
 	
@@ -20,6 +22,7 @@ public class Game extends AI {
 	}
 	
 	public double simulateGame(State startState, int depth, boolean alfabeta) {
+		tie = false;
 		AI.bestStates = null;
 		AI.depth = depth;
 		actionPath = new LinkedList<Action>();
@@ -40,7 +43,10 @@ public class Game extends AI {
 			printState(startState);
 			//System.out.println("kk: "+Game.kk);
 			Game.kk = 0;
-			if(actionPath.size() > 100) break;
+			if(actionPath.size() > 70) {
+				tie=true;
+				break;
+			}
 		} while(startState.player1.life.value > 0 && startState.player2.life.value > 0);
 		
 		lifeDist += Math.abs(startState.player1.life.value-startState.player2.life.value);

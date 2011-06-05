@@ -9,6 +9,7 @@
 \usepackage[slovene]{babel}
 
 
+
 \usepackage[utf8]{inputenc}
 \usepackage[pdftex,bookmarks=true]{hyperref}
 
@@ -32,6 +33,25 @@
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0.0pt}
 \renewcommand{\footrulewidth}{0.0pt}
+
+\newtheorem{theorem}{Izrek}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
 
 %********************************************
 
@@ -157,26 +177,35 @@ Energy & Začetna energija bojevnika, ki jo lahko porabi za izvajanje akcij.\\ [
 \end{table}
 
 \section{Bojevniki}
-Za potrebe seminarske naloge, smo se omejili le na dva bojevnika - Tank in Vojak. Značilnosti obeh smo določili kot v  ~\ref{table:bojevniki}.
-
-\begin{table}[ht] \caption{Atributi bojevnikov}
+Za potrebe seminarske naloge, smo se omejili le na dva bojevnika - Tank in Vojak. 
+Značilnosti obeh smo določili kot v tabeli ~\ref{table:bojevniki}. 
+\begin{table}[ht] \caption{Značilnosti bojevnikov}
 \centering
-\begin{tabular}{cp{10cm}}
+\begin{tabular}{ccccccc}
 \hline\hline
-Atribut & Opis Atributa \\ [0.5ex]
+Tip & Trpežnost & Domet & Hitrost & Obnavljanje & Varčnost  & Energija \\ [0.5ex]
 %heading 
 \hline 
-Life & Celo število, ki opisuje količino življenja ob začetku igre.\\
-Speed & Hitrost, ki opisuje za koliko kock se bojevnik lahko premakne ob premikih.\\
-Energy & Začetna energija bojevnika, ki jo lahko porabi za izvajanje akcij.\\ [1ex]
+Tank & boljša & boljši & višja & slabše & boljša & višja\\
+Vojak & slabša & slabši & nižja & boljše & slabša & nižja\\ [1ex]
 \hline %inserts single line
 \end{tabular}
 \label{table:bojevniki} % is used to refer this table in the text
 \end{table}
 
 
-\section{Akcije}
-hjkljkl
+\section{Opis problema}
+Znan problem v RPG igrah je ravnotežje različnih likov, ki tekmujejo med seboj. Kljub različnim lastnostim, morajo imeti bojevniki enake možnosti za zmago v igri. Naša naloga je bila poiskati konkretne vrednosti atributov za zgoraj opisana bojevnika tako, da bosta igrala čim bolj izenačeno igro. Problem smo ločili na dva dela - simulacijo igranja in optimizacijo izenačenosti bojevnikov. Za simulacijo igranja smo uporabili \textit{minimax} algoritem. Za optimizacijo smo uporabili \textit{genetske algoritme} in jih primerjali s \textit{hill climbing}-om.
+
+\chapter{Metode dela}
+V tem poglavju bomo opisali uporabljene algoritme in načine izvajanja meritev. Na koncu poglavja bomo podali nekaj implementacijskih podrobnosti.
+
+\section{Simulacija igranja}
+Za simulacijo igranja igre smo uporabili algoritem \textit{minimax}. Z njim smo poskušali doseči, da igralca igrata čim bolj optimalno igro, tj. v danem trenutku izbereta najboljšo možno potezo.
+
+Algoritem se uporablja za minimizacijo možne izgube, pri maksimizaciji možnega dobička. V naši igri igralca izmenjujeta poteze in poskušata izbrati najboljšo svojo potezo oz. maksimizirati svojo vrednost, posledično pa minimizirati nasprotnikovo. Tako glede na trenutno pozicijo identificiramo igralca MIN in MAX. Tisti ki je na potezi predstavlja igralca MAX, nasprotnik pa igralca MIN. 
+
+
 
 
 \subsection{Zaznavanje prostora}
