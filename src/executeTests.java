@@ -27,7 +27,7 @@ public class executeTests {
 				MUTATION_FACTOR,
 				ELITE_FACTOR,
 				ALFABETA);
-		genetic.run();
+//		genetic.run();
 		
 		ArrayList<OptimizationAlgorithm.Individual> seeds = Specs.readSpecsForSeeds("initPop//ind", POPULATION_SIZE, genetic);
 		HillClimbing hill = new HillClimbing(warriors.get(0), warriors.get(1), GAME_PER_INDIVIDUAL_REPEAT, ALFABETA, MINMAX_DEPTH, seeds);

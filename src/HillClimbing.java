@@ -1,7 +1,11 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
+
+import org.omg.CORBA.LocalObject;
 
 
 public class HillClimbing extends OptimizationAlgorithm
@@ -32,99 +36,128 @@ public class HillClimbing extends OptimizationAlgorithm
 		double bestCUmulativeScore = -1;
 		int bestGames = -1;
 		
-		Individual seed = chooseNextBest(i);
+		int numOfEvaluations = 0;
 		
-		do {
-			dir = -1;
-			bestScore = seed.score;
-			bestLifeDist = seed.lifeDist;
-			bestCUmulativeScore = seed.cumulativeScore;
-			bestGames = seed.games;
-			seed.score = 0;
-			seed.lifeDist = 0;
-			seed.cumulativeScore = 0;
-			seed.games = 0;
-			
-			ArrayList<ArrayList<Property>> chromosome = GeneticOptimization.getChromosome(seed);
-			
-			for(Property p : chromosome.get(0)) {
-				if(p.levelUp()) {
-					double currScore = evaluate(seed);
-					if(currScore > bestScore) {
-						dir = 1;
-						bestPropChange = p;
-						bestScore = currScore;
-						bestLifeDist = seed.lifeDist;
-						bestCUmulativeScore = seed.cumulativeScore;
-						bestGames = seed.games;
-					}
-					seed.score = 0;
-					seed.lifeDist = 0;
-					seed.cumulativeScore = 0;
-					seed.games = 0;
-					p.levelDown();
-				}
-				
-				if(p.levelDown()) {
-					double currScore = evaluate(seed);
-					if(currScore > bestScore) {
-						dir = 0;
-						bestPropChange = p;
-						bestScore = currScore;
-						bestLifeDist = seed.lifeDist;
-						bestCUmulativeScore = seed.cumulativeScore;
-						bestGames = seed.games;
-					}
-					p.levelUp();
-					seed.score = 0;
-					seed.lifeDist = 0;
-					seed.cumulativeScore = 0;
-					seed.games = 0;
-				}
-				
+		while(numOfEvaluations < 90*25) {
+		
+			Individual seed = chooseNextBest(i);
+			if(seed == null) {
+				System.out.println("NULL SEED");
+				return;
 			}
 			
-			for(Property p : chromosome.get(1)) {
-				if(p.levelUp()) {
-					double currScore = evaluate(seed);
-					if(currScore > bestScore) {
-						dir = 1;
-						bestPropChange = p;
-						bestScore = currScore;
-						bestLifeDist = seed.lifeDist;
-						bestCUmulativeScore = seed.cumulativeScore;
-						bestGames = seed.games;
+			System.out.println("NEW SEED ("+i+"): "+seed.lifeDist/seed.games);
+			
+			do {
+				dir = -1;
+				bestScore = seed.score;
+				bestLifeDist = seed.lifeDist;
+				bestCUmulativeScore = seed.cumulativeScore;
+				bestGames = seed.games;
+				seed.score = 0;
+				seed.lifeDist = 0;
+				seed.cumulativeScore = 0;
+				seed.games = 0;
+				
+				System.out.println(bestLifeDist/bestGames+" "+numOfEvaluations);
+				
+				ArrayList<ArrayList<Property>> chromosome = GeneticOptimization.getChromosome(seed);
+				
+				for(Property p : chromosome.get(0)) {
+					if(p.levelUp()) {
+						numOfEvaluations++;
+						double currScore = evaluate(seed);
+						if(currScore > bestScore) {
+							dir = 1;
+							bestPropChange = p;
+							bestScore = currScore;
+							bestLifeDist = seed.lifeDist;
+							bestCUmulativeScore = seed.cumulativeScore;
+							bestGames = seed.games;
+						}
+						seed.score = 0;
+						seed.lifeDist = 0;
+						seed.cumulativeScore = 0;
+						seed.games = 0;
+						p.levelDown();
 					}
-					p.levelDown();
-					seed.score = 0;
-					seed.lifeDist = 0;
-					seed.cumulativeScore = 0;
-					seed.games = 0;
+					
+					if(p.levelDown()) {
+						numOfEvaluations++;
+						double currScore = evaluate(seed);
+						if(currScore > bestScore) {
+							dir = 0;
+							bestPropChange = p;
+							bestScore = currScore;
+							bestLifeDist = seed.lifeDist;
+							bestCUmulativeScore = seed.cumulativeScore;
+							bestGames = seed.games;
+						}
+						p.levelUp();
+						seed.score = 0;
+						seed.lifeDist = 0;
+						seed.cumulativeScore = 0;
+						seed.games = 0;
+					}
+					
 				}
 				
-				if(p.levelDown()) {
-					double currScore = evaluate(seed);
-					if(currScore > bestScore) {
-						dir = 0;
-						bestPropChange = p;
-						bestScore = currScore;
-						bestLifeDist = seed.lifeDist;
-						bestCUmulativeScore = seed.cumulativeScore;
-						bestGames = seed.games;
+				for(Property p : chromosome.get(1)) {
+					if(p.levelUp()) {
+						numOfEvaluations++;
+						double currScore = evaluate(seed);
+						if(currScore > bestScore) {
+							dir = 1;
+							bestPropChange = p;
+							bestScore = currScore;
+							bestLifeDist = seed.lifeDist;
+							bestCUmulativeScore = seed.cumulativeScore;
+							bestGames = seed.games;
+						}
+						p.levelDown();
+						seed.score = 0;
+						seed.lifeDist = 0;
+						seed.cumulativeScore = 0;
+						seed.games = 0;
 					}
-					p.levelUp();
-					seed.score = 0;
-					seed.lifeDist = 0;
-					seed.cumulativeScore = 0;
-					seed.games = 0;
+					
+					if(p.levelDown()) {
+						numOfEvaluations++;
+						double currScore = evaluate(seed);
+						if(currScore > bestScore) {
+							dir = 0;
+							bestPropChange = p;
+							bestScore = currScore;
+							bestLifeDist = seed.lifeDist;
+							bestCUmulativeScore = seed.cumulativeScore;
+							bestGames = seed.games;
+						}
+						p.levelUp();
+						seed.score = 0;
+						seed.lifeDist = 0;
+						seed.cumulativeScore = 0;
+						seed.games = 0;
+					}
 				}
+				
+				modifyIndividual(bestPropChange, dir, bestScore, bestLifeDist, bestCUmulativeScore, bestGames, seed);
+			}	while(dir != -1);
+			try{
+			    FileWriter fstream = new FileWriter("logHill//best_"+i);
+			        BufferedWriter out = new BufferedWriter(fstream);
+			    out.write(seed.w1.toString()); out.write(seed.w2.toString());
+			    out.write("Score: "+bestScore+"\nLife Diff: "+bestLifeDist/bestGames);
+			    //Close the output stream
+			    out.close();
 			}
-			
+			catch (Exception e){//Catch exception if any
+			      System.err.println("Error: " + e.getMessage());
+			}
 			i++;
-			
-			modifyIndividual(bestPropChange, dir, bestScore, bestLifeDist, bestCUmulativeScore, bestGames, seed);
-			
-		}	while(dir != -1);
+			System.out.println("------------------");
+			System.out.println();
+		}
+		System.out.println("OUT OF EVALUATIONS");
 		
 	}
 
@@ -153,6 +186,8 @@ public class HillClimbing extends OptimizationAlgorithm
 		}
 
 	private Individual chooseNextBest(int i) {
+		if(seeds.size() == i) return null;
+		
 		return seeds.get(i);
 		
 		
