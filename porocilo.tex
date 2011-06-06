@@ -7,6 +7,7 @@
 \usepackage{color}
 \usepackage{xcolor}
 \usepackage[slovene]{babel}
+\usepackage{program}
 
 
 
@@ -39,19 +40,8 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
 
-\newenvironment{proof}[1][Proof]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
-\newenvironment{definition}[1][Definition]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
-\newenvironment{example}[1][Example]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
-\newenvironment{remark}[1][Remark]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
 
-\newcommand{\qed}{\nobreak \ifvmode \relax \else
-      \ifdim\lastskip<1.5em \hskip-\lastskip
-      \hskip1.5em plus0em minus0.5em \fi \nobreak
-      \vrule height0.75em width0.5em depth0.25em\fi}
+
 
 %********************************************
 
@@ -107,22 +97,7 @@ Umetna inteligenca 2
 \chapter*{Povzetek}
 
 \addcontentsline{toc}{chapter}{Povzetek}
-Namen dokumenta je, predstaviti naše delo, ki se je izvajalo v sklopu vaj pri predmetu
- Porazdeljene inteligentne programske tehnologije. Cilj vaj je bil implementirati znanja
- in ideje, ki smo jih pridobili pri predmetu. Implementacija je v obliki agenta, ki sodeluje
- z drugimi agenti pri igranju igre Capture The Flag (CTF). Asistent pri predmetu nam je pripravil
- simulirano okolje agenta, v katerem se igra odvija.
-\\
-V tem dokumentu se bomo dotaknili problemov, kot so raziskovanje prostora z več agenti, sodelovanje med agenti, 
-iskanje zastave, ter razne ofenzivne in defenzivne taktike pri sami igri.
-\\
-Pri raziskovanju prostora je cilj, podobno kot pri raziskovanju z enim samim agentom, minimizirati skupen porabljen čas.
- V našem primeru je cil, da agenti v čim krajšem času odkrijejo zastavo. Glavni problem, ki ga je potrebno rešiti v kontekstu
- raziskovanja z večimi agenti je izbira primernih smernic za posameznega agenta, tako da istočasno raziskujejo različne predele 
-prostora. Tega smo se lotili tako, da vsak agent oceni ceno poti do ciljne točke in njen prispevek. Ob vsakem morebitnem srečanju 
-pa si izmenjajo informacijo o prostoru, ki so jo do tistega trenutka pridobili.\\
-\\
-\\
+
 Za oblikovanje tega dokumenta je bil uporabljen sistem \LaTeX.
 
 \vspace{1.3cm}
@@ -131,7 +106,7 @@ Za oblikovanje tega dokumenta je bil uporabljen sistem \LaTeX.
 
 \vspace{0.5cm}
 \noindent
-Agenti, sodelovanje, CTF, raziskovanje, algoritmi, AI.
+j
 
 
 
@@ -146,7 +121,7 @@ Posamezna RPG igra ponuja izbiro med več različnimi bojevniki, vsak ima svoje 
 V igri sodelujeta dva igralca, vsak s svojim bojevnikom. Bojno polje je plošča poljubne velikosti, razdeljena na kvadratno mrežo. Bojevnika izmenično izvajate v naprej definirane akcije. Cilj igre je pokončati nasprotnika, preden on pokonča tebe. Vsak bojevnik ima na izbiro v naprej določene akcije, ki jih opisuje tabela ~\ref{table:akcijeBojevnikov}. Posamezni bojevnik je opisan z atributi, ki jih podaja ~\ref{table:atributiBojevnikov}.
 
 
-\begin{table}[ht] \caption{Akcije bojevnikov}
+\begin{table}[ht] 
 \centering
 \begin{tabular}{cp{10cm}}
 \hline\hline
@@ -158,10 +133,11 @@ Pass & Akcija pomeni počitek, bojevniku se ob počivanju poveča energija.\\
 Fire & Strel s primarnim orožjem. Vsak strel pomeni zmanjšanje določene količine energije in zmanjšanje življenja nasprotnika. Škoda je delno odvisna tudi od naključja.\\ [1ex]
 \hline %inserts single line
 \end{tabular}
+\caption{Akcije bojevnikov}
 \label{table:akcijeBojevnikov} % is used to refer this table in the text
 \end{table}
 
-\begin{table}[ht] \caption{Atributi bojevnikov}
+\begin{table}[ht] 
 \centering
 \begin{tabular}{cp{10cm}}
 \hline\hline
@@ -173,13 +149,14 @@ Speed & Hitrost, ki opisuje za koliko kock se bojevnik lahko premakne ob premiki
 Energy & Preostala energija bojevnika, ki jo lahko porabi za izvajanje akcij.\\ [1ex]
 \hline %inserts single line
 \end{tabular}
+\caption{Atributi bojevnikov}
 \label{table:atributiBojevnikov} % is used to refer this table in the text
 \end{table}
 
 \section{Bojevniki}
 Za potrebe seminarske naloge, smo se omejili le na dva bojevnika - Tank in Vojak. 
 Značilnosti obeh smo določili kot v tabeli ~\ref{table:bojevniki}. 
-\begin{table}[ht] \caption{Značilnosti bojevnikov}
+\begin{table}[ht] 
 \centering
 \begin{tabular}{ccccccc}
 \hline\hline
@@ -190,6 +167,7 @@ Tank & boljša & boljši & višja & slabše & boljša & višja\\
 Vojak & slabša & slabši & nižja & boljše & slabša & nižja\\ [1ex]
 \hline %inserts single line
 \end{tabular}
+\caption{Značilnosti bojevnikov}
 \label{table:bojevniki} % is used to refer this table in the text
 \end{table}
 
@@ -244,8 +222,6 @@ Z do zdaj opisanimi pravili igre se je pojavljal problem bežanja. Velikokrat se
  \label{fig:alfabeta}
 \end{figure}
 
-\subsection{Parametri algoritma}
-Simulaciji igranja iger je potrebno nastavit nekaj parametrov, ki vplivajo predvsem na hitrost izvajanja in natančnost rezultatov. Eden izmed parametrov je globina minimax drevesa. Globina nam uravnava stopnjo optimalnosti neke poteze, saj z večjo globino drevo razišče večji del prostora. Z večanjem globine, se časovna zahtevnost algoritma eksponentno povečuje. Mi smo se odločili, da bomo uporabljali globino 4
 
 \section{Optimizacija uravnoteženosti}
 Za uravnoteževanje bojevnikov smo uporabili genetske algoritme in hill climbing.
@@ -265,17 +241,121 @@ V nadaljevanju bomo predstavili konkretne značilnosti genetskih algoritmov za n
 \\\\
 \textit{Populacija} je množica osebkov. Obdelujemo jo v korakih, ki jih imenujemo \textit{generacija}. Iz osebkov trenutne populacije (\textit{staršev}) tvorimo naslednike (\textit{potomce}), ki pripadajo populaciji naslednje generacije.
 \\\\
-\textit{Elita} je podmnožica najboljših osebkov v populaciji.
+\textit{Elita} je podmnožica najboljših osebkov v populaciji, ki privzeto napreduje v naslednjo generacijo.
 \\\\
-\textit{Selekcija}
+\textit{Selekcija} iz populacije izbere osebke, ki bodo sodelovali v razmnoževanju.
 \\\\
-\textit{Križanje}
+\textit{Križanje} iz genskega materiala dveh staršev zgradimo dva nova otroka.
 \\\\
-\textit{Mutacija}
+\textit{Mutacija} je z majhno verjetnostjo definirana sprememba genov nekega osebka.
+
+\subsubsection{Genetske operacije}
+
+Na ~\ref{fig:genetski} je opisana osnovna zanka genetskega algoritma. V nadaljevanju bomo opisali vse operacije, ki jih izvršimo med izvajanjem ene iteracije genetskega algoritma.
+\\\\
+\begin{figure}[ht]
+ \begin{program}
+\BEGIN
+|ustvari začetno populacijo|;
+  \WHILE {ni\ pretekel\ cas} \DO
+     |oceni uspešnost populacije|;
+     |izberi elito in jo dodaj v novo generacijo|;
+     |izberi starše za razmoževanje|;
+     |križanje staršev|;
+     |mutacija otrok|;
+  \END
+\END
+\end{program}
+ \caption[Genetski algoritem]{Osnovna zanka genetskega algoritma.}
+ \label{fig:genetski}
+\end{figure}
+
+\textit{Ustvarjanje začetne populacije}\\
+Ta operacija se izvede samo enkrat. Najprej je potrebno definirati tako imenovani model bojevnika, kjer določimo intervale na katerih se bodo nahajale vrednosti atributov. Podrobnosti o specifikaciji so podane na koncu tega dokumenta. Začetno populacijo dobimo naključno, z omejitvami ki so podane v modelu bojevnikov.
+\\\\
+\textit{Ocenjevanje uspešnosti populacije}\\
+Uspešnost populacije ocenjujemo z \textit{minimax} algoritmom, ki ga večkrat poženemo in vsakič beležimo razliko v življenjih bojevnikov. Boljši osebki bodo bolje uravnoteženi in tako imeli manjšo povprečno razliko v življenjih.
+\\\\
+\textit{Izbira elite}\\
+Elito izberemo zato, da si zagotovimo, da bo nekaj najboljših osebkov zagotovo napredovalo v naslednjo generacijo. Če elite ni, se lahko zgodi, da operacija izbire staršev včasih ne izbere najboljših osebkov.
+\\\\
+\textit{Izbira staršev}\\
+Izbira staršev poteka po metodi rulete, kjer bolje ocenjeni osebki zasedajo proporcionalno več prostora na kolesu kot slabše ocenjeni, zato je večja verjetnost da izberemo boljše kot slabše.
+\\\\
+\textit{Križanje staršev}\\
+Križanje predstavlja Slika ~\ref{fig:krizanje}. Omeniti je potrebno, da poleg bojevnikovih atributov (Life, Energy, Speed) bojevnika opisujejo tudi akcije. Vsaka akcija je sestavljena iz atributov, ki so pravtako podvrženi križanju in mutaciji in so definirani enako kot "navadni" atributi bojevnika. Podrobnosti so podane na koncu tega dokumenta.
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=12cm]{krizanje.png}
+ \caption[Križanje starsev]{Pri križanju iz dveh staršev dobimo dva potomca. Starš je predstavljen s seznamom atributov, seznam pa je razdeljen na dva dela - vsak del predstavlja enega bojevnika. Za vsak del seznama naključno določimo odrezno točko (zeleni črti). Iz atributov sestavimo dva otroka kot prikazuje slika.}
+ \label{fig:krizanje}
+\end{figure}
+\\\\
+\textit{Mutacija otrok}\\
+Vsak otrok gre skozi proces mutacije. Tu se lahko vsak gen (atribut) z neko majhno verjetnostjo naključno spremeni. Mutacija je glavno orodje za preprečevanje zadrževanja v lokalnih maksimumih, saj nam omogoča preskok v nova območja raziskovanja.
 
 \subsection{Hill climbing}
+\textit{Hill climbing} je optimizacijska tehnika, ki pripada družini lokalnih iskanj. Je iterativen algoritem, ki prične z neko naključno rešitvijo problema, potem pa z ikrementalnim spreminjanjem enega elementa rešitve išče boljše stanje. Ko preizkusi vse spremembe nekega stanja, izbere tisto, ki ga privede v najboljše možno stanje od trenutnega in se premakne tja. To ponavlja tako dolgo, dokler obstaja sprememba na boljše. Problem te metode je, da se lahko zgodi, da obstane v lokalnem maksimumu (odvisno od začetnega stanja). To težavo prikazuje Slika ~\ref{fig:hill}. Problem lahko omilimo tako, da algoritem zaženemo iz večih začetnih stanj. Mi smo pri testiranju metode začeli iz stanj, ki so se generirala v prvem koraku genetskega algoritma. Ta stanja smo uredili po kvaliteti (začenši z najboljšim) in jih v tem vrstnem redu uporabljali za preiskovanje s \textit{hill climbingom}.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=12cm]{localmax.png}
+ \caption[Problem lokalnega maksimuma]{Pri algoritmu hill climbing naletimo na problem lokalnega maksimuma. Za primer na sliki velja, da če je naše začetno stanje na desni strani lokalnega maksimuma, bomo tam tudi obtičali, saj bo iz vrha izgledalo, da ne obstaja nobeno boljše stanje.}
+ \label{fig:hill}
+\end{figure}
+
+\section{Parametri algoritmov}
+Vsi uporabljeni algoritmi zahtevajo nastavitev določenih parametrov. V tem razdelku bomo opisali našo izbiro vrednosti parametrov in poskusili to izbiro tudi osmisliti.
+Kot je pogosto v računalništvu, je tudi pri našem problemu potrebno najti kompromis med časom, ki ga imamo na voljo in natančnostjo meritev. S časovnega vidika, je ozko grlo problema simuliranje igre. Kot smo omenili v poglavju o problemih minimax algoritma, zaradi naključnosti v definiciji naše igre, rezultati večih ponovitev simuliranja igre niso enaki. Da faktor naključnosti omilimo, je treba igro simulirati večkrat, kar traja precej časa. Dolžino trajanja simulacije uravnavamo z nastavitvijo globine minimax drevesa. Globina drevesa in število ponovitev simulacije določata potreben čas za evaluacijo enega osebka. Mi smo za naše testiranje izbrali globino 4 in 40 kratno ponovitev simulacije. 95\% interval zaupanja je s temi nastavitvami in bojevniki, ki zadoščajo omejitvam na koncu poglavja, v povprečju širok 2.1.
+
+Slabost genetskih algoritmov je veliko število parametrov, ki jih je težko teoretično določiti. Potrebno je predvsem dobro poznavanje domene in preizkušanje različnih kombinacij. Eden izmed parametrov je velikost populacije. Če je le-ta premajhna, algoritem ne preišče dovolj prostora, da bi deloval konsistentno. V literaturi se večkrat omenja velikost populacije 50 osebkov. Mi smo ta parameter nastavili na 25, predvsem zaradi krajšega časa izvajanja in ker so eksperimenti pokazali, da daje dobre rezultate. Pomemben vpliv ima tudi verjetnost mutacije. Če je le-ta prevelika, se lahko zgodi da bo genetski algoritem potreboval ogromno časa da najde optimum. Če je premajhna, se morda nikoli ne bo premaknil iz lokalnega optimuma. Ker smo pri testirajnu uporabljali elito, smo faktor mutacije nastavili na 0.1, kar je precej velika verjetnost. Elita poskrbi, da se informacija o lokalnem optimumu prenese naprej, mutacije pa omogočajo preskok iz lokalnega optimuma. Velikost elite smo nastavili na 20\% velikosti populacije (5 osebkov).
+
+Vsi parametri so zbrani v Tabeli ~\ref{table:parametris}.
+
+\begin{table}[ht] 
+ \centering
+\begin{tabular}{ll}
+\hline\hline
+Parameter & Vrednost \\ [0.5ex]
+%heading 
+\hline 
+Globina Minimax Drevesa & 4\\
+Ponovitev Simulacije & 40\\
+Velikost populacije & 25\\ 
+Verjetnost mutacije & 0.1\\ 
+Faktor Elite & 0.2\\ [1ex]
+\hline %inserts single line
+\end{tabular}
+\caption{Parametri algoritmov}
+\label{table:parametris} % is used to refer this table in the text
+\end{table}
 
 
+\chapter{Rezultati}
+V tem poglavju predstavimo rezultate in primerjamo dva algoritma za optimizacijo - genetske algoritme in hill climbing.
+
+\section{Genetski algoritmi}
+Genetski algoritmi so se izkazali kot primerna metoda za reševanje našega problema. Iz rezultatov je razvidna konvergenca uravnoteženosti bojevnikov, prav tako pa smo z njimi potrdili nekatere lastnosti genetskih algoritmov. Na Grafu ~\ref{fig:genetskiLifeDiff} je prikazana razlika v življenjih najboljšega osebka v odvisnosti od generacije. Opazimo lahko nihanje kvalitete najboljšega osebka (ker ga z elito postavimo v novo generacijo, kjer je na novo ocenjen), ki je posledica naključnosti v igri in se sklada z izračunano širino intervala zaupanja. Za lepši prikaz smo izračunali še povprečje med sosednjima minimumoma, ki zaduši fluktuacije (oranžna črtkana črta). Tam se lepo vidi obnašanje genetskega algoritma, ki raziskuje v lokalnih optimumih (3. do 40. generacija, 41. do 69. generacija, 70. do 91. generacija), vmes pa mu uspe preskočiti v v boljši optimum.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=15cm]{genetskiLifeDiff.png}
+ \caption[Graf razlike v življenjih v odvisnosti od generacije]{Oranžna črtkana črta je dobljena z izračunom povprečja med lokalnim minimumom (vključno) in vrednostmi do naslednjega minimuma.}
+ \label{fig:genetskiLifeDiff}
+\end{figure}
+
+
+
+\section{Hill Climbing}
+- potrebno še dodatno preverjanje rezultatov!
+- zakaj dobri rezultati (če bodo)
+- kaj to pomeni v splošnem
+
+\section{Primerjava algoritmov}
+- zakaj genetski boljši
+- zakaj je hill climbin delal dobro
+- graf gibanja kvalitete obeh
+- ali je naključno, da je hill climbin uspel?
 
 \newpage
 

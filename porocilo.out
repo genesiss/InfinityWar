@@ -7,9 +7,13 @@
 \BOOKMARK [1][-]{section.2.1}{Simulacija igranja}{chapter.2}
 \BOOKMARK [2][-]{subsection.2.1.1}{Algoritem minimax}{section.2.1}
 \BOOKMARK [2][-]{subsection.2.1.2}{Problemi in prilagoditve}{section.2.1}
-\BOOKMARK [2][-]{subsection.2.1.3}{Parametri algoritma}{section.2.1}
 \BOOKMARK [1][-]{section.2.2}{Optimizacija uravnotezenosti}{chapter.2}
 \BOOKMARK [2][-]{subsection.2.2.1}{Genetski algoritmi}{section.2.2}
 \BOOKMARK [2][-]{subsection.2.2.2}{Hill climbing}{section.2.2}
-\BOOKMARK [0][-]{subsection.2.2.2}{Seznam slik}{}
-\BOOKMARK [0][-]{chapter*.4}{Seznam tabel}{}
+\BOOKMARK [1][-]{section.2.3}{Parametri algoritmov}{chapter.2}
+\BOOKMARK [0][-]{chapter.3}{Rezultati}{}
+\BOOKMARK [1][-]{section.3.1}{Genetski algoritmi}{chapter.3}
+\BOOKMARK [1][-]{section.3.2}{Hill Climbing}{chapter.3}
+\BOOKMARK [1][-]{section.3.3}{Primerjava algoritmov}{chapter.3}
+\BOOKMARK [0][-]{section.3.3}{Seznam slik}{}
+\BOOKMARK [0][-]{chapter*.5}{Seznam tabel}{}

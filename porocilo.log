@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2011.5.15)  6 JUN 2011 16:36
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2011.5.15)  7 JUN 2011 01:13
 entering extended mode
  %&-line parsing enabled.
 **porocilo.tex
@@ -103,7 +103,70 @@ Package babel Warning: No hyphenation patterns were loaded for
 
 \l@slovene = a dialect from \language0
 Package babel Info: Making " an active character on input line 79.
-)) (/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+)) (./program.sty
+\@gtempa=\dimen106
+\@gtempa=\dimen107
+\@gtempa=\dimen108
+\@gtempa=\dimen109
+\@gtempa=\dimen110
+\@gtempa=\dimen111
+\@gtempa=\dimen112
+\@gtempa=\dimen113
+\@gtempa=\dimen114
+\@gtempa=\dimen115
+\@gtempa=\dimen116
+\@gtempa=\dimen117
+\@gtempa=\dimen118
+\@gtempa=\dimen119
+\@gtempa=\dimen120
+\@gtempa=\dimen121
+\@gtempa=\dimen122
+\@gtempa=\dimen123
+\@gtempa=\dimen124
+\@gtempa=\dimen125
+\@gtempa=\dimen126
+\@gtempa=\dimen127
+\@gtempa=\dimen128
+\@gtempa=\dimen129
+\@gtempa=\dimen130
+\@gtempa=\dimen131
+\@gtempa=\dimen132
+\@gtempa=\dimen133
+\@gtempa=\dimen134
+\@gtempa=\dimen135
+\@gtempa=\dimen136
+\@gtempa=\dimen137
+\@gtempa=\dimen138
+\@gtempa=\dimen139
+\@gtempa=\dimen140
+\@gtempa=\dimen141
+\@gtempa=\dimen142
+\@gtempa=\dimen143
+\@gtempa=\dimen144
+\@gtempa=\dimen145
+\@gtempa=\dimen146
+\@gtempa=\dimen147
+\@gtempa=\dimen148
+\@gtempa=\dimen149
+\@gtempa=\dimen150
+\@gtempa=\dimen151
+\@gtempa=\dimen152
+\@gtempa=\dimen153
+\@gtempa=\dimen154
+\@gtempa=\dimen155
+\c@programline=\count90
+\old@nxttabmar=\count91
+\symeulerletters=\mathgroup4
+\powersetbox=\box26
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <17.28> on input line 839.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 839.
+LaTeX Font Info:    Try loading font information for U+eur on input line 839.
+ (/usr/share/texmf-texlive/tex/latex/amsfonts/ueur.fd
+File: ueur.fd 2002/01/19 v2.2g AMS font definitions
+))
+(/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
 Package: inputenc 2006/05/05 v1.1b Input encoding file
 \inpenc@prehook=\toks15
 \inpenc@posthook=\toks16
@@ -322,9 +385,9 @@ Now handling font encoding U ...
 ))
 (/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2007/02/07 v6.75r Hypertext links for LaTeX
-\@linkdim=\dimen106
-\Hy@linkcounter=\count90
-\Hy@pagecounter=\count91
+\@linkdim=\dimen156
+\Hy@linkcounter=\count92
+\Hy@pagecounter=\count93
 
 (/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2007/02/07 v6.75r Hyperref: PDFDocEncoding definition (HO)
@@ -351,9 +414,9 @@ Package hyperref Info: Bookmarks ON on input line 2444.
 Package: url 2005/06/27  ver 3.2  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 2599.
-\Fld@menulength=\count92
-\Field@Width=\dimen107
-\Fld@charsize=\dimen108
+\Fld@menulength=\count94
+\Field@Width=\dimen157
+\Fld@charsize=\dimen158
 \Choice@toks=\toks17
 \Field@toks=\toks18
 Package hyperref Info: Hyper figures OFF on input line 3102.
@@ -361,34 +424,34 @@ Package hyperref Info: Link nesting OFF on input line 3107.
 Package hyperref Info: Hyper index ON on input line 3110.
 Package hyperref Info: backreferencing OFF on input line 3117.
 Package hyperref Info: Link coloring OFF on input line 3122.
-\Hy@abspage=\count93
-\c@Item=\count94
-\c@Hfootnote=\count95
+\Hy@abspage=\count95
+\c@Item=\count96
+\c@Hfootnote=\count97
 )
 *hyperref using driver hpdftex*
 (/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2007/02/07 v6.75r Hyperref driver for pdfTeX
-\Fld@listcount=\count96
+\Fld@listcount=\count98
 )
-\c@theorem=\count97
+\c@theorem=\count99
  (./porocilo.aux)
 \openout1 = `porocilo.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-Package hyperref Info: Link coloring OFF on input line 58.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+Package hyperref Info: Link coloring OFF on input line 48.
 
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2006/12/27 v2.28 Cross-referencing by name of section
@@ -402,29 +465,27 @@ LaTeX Warning: You have requested, on input line 24, version
                `2000/09/07 v2.0 Converting references to numbers (HO)'
                is available.
 
-\c@section@level=\count98
+\c@section@level=\count100
 )
-LaTeX Info: Redefining \ref on input line 58.
-LaTeX Info: Redefining \pageref on input line 58.
+LaTeX Info: Redefining \ref on input line 48.
+LaTeX Info: Redefining \pageref on input line 48.
  (./porocilo.out) (./porocilo.out)
 \@outlinefile=\write3
 \openout3 = `porocilo.out'.
 
 
-<./pictures/uni_logo.png, id=66, 142.28156pt x 286.82156pt>
+<./pictures/uni_logo.png, id=82, 142.28156pt x 286.82156pt>
 File: ./pictures/uni_logo.png Graphic file (type png)
 
 <use ./pictures/uni_logo.png>
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/sc' undefined
-(Font)              using `OT1/cmr/bx/n' instead on input line 78.
+(Font)              using `OT1/cmr/bx/n' instead on input line 68.
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./pictures/uni_logo.png (P
 NG copy)>] (./porocilo.toc
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 4.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 4.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -437,34 +498,24 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.107 \chapter
-              *{Povzetek} [1
+l.97 \chapter
+             *{Povzetek} [1
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 110--127
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 110--127
-
- []
-
-[2
+] [2
 
 ]
 Poglavje 1.
 
 Package hyperref Warning: Glyph not defined in PD1 encoding,
-(hyperref)                removing `\textcaron+c' on input line 145.
+(hyperref)                removing `\textcaron+c' on input line 120.
 
 
-Underfull \hbox (badness 1184) in paragraph at lines 157--158
+Underfull \hbox (badness 1184) in paragraph at lines 132--133
 []\OT1/cmr/m/n/12 Akcija pomeni po^^Tcitek, bo-jevniku se ob po^^Tcivanju
  []
 
 
-Underfull \hbox (badness 2875) in paragraph at lines 158--158
+Underfull \hbox (badness 2875) in paragraph at lines 133--133
 []\OT1/cmr/m/n/12 Strel s pri-marnim oro^^Tzjem. Vsak strel pomeni
  []
 
@@ -473,74 +524,149 @@ Underfull \hbox (badness 2875) in paragraph at lines 158--158
 ] [4] [5]
 Poglavje 2.
 
-Overfull \hbox (8.39886pt too wide) in paragraph at lines 207--208
+Overfull \hbox (8.39886pt too wide) in paragraph at lines 185--186
 \OT1/cmr/m/n/12 Algoritem se uporablja za min-i-mizacijo mo^^Tzne izgube, pri m
 ak-simizaciji mo^^Tznega
  []
 
 
-Overfull \hbox (76.34561pt too wide) detected at line 220
+Overfull \hbox (76.34561pt too wide) detected at line 198
 \OML/cmm/m/it/12 val\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 n\OT1/cmr/m/n/12 ) = []
  []
 
 [6
 
-] <svg2raster.png, id=127, 527.72156pt x 308.65312pt>
+] <svg2raster.png, id=147, 527.72156pt x 308.65312pt>
 File: svg2raster.png Graphic file (type png)
  <use svg2raster.png>
-Underfull \hbox (badness 10000) in paragraph at lines 234--238
+Underfull \hbox (badness 10000) in paragraph at lines 212--216
 
  []
 
-[7 <./svg2raster.png>] <alfabeta.png, id=138, 912.40875pt x 462.97969pt>
+[7 <./svg2raster.png>] <alfabeta.png, id=158, 912.40875pt x 462.97969pt>
 File: alfabeta.png Graphic file (type png)
 
-<use alfabeta.png> [8 <./alfabeta.png>] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 260--275
+<use alfabeta.png> [8 <./alfabeta.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 236--251
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 260--275
+Underfull \hbox (badness 10000) in paragraph at lines 236--251
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 260--275
+Underfull \hbox (badness 10000) in paragraph at lines 236--251
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 260--275
+Underfull \hbox (badness 10000) in paragraph at lines 236--251
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 260--275
+Underfull \hbox (badness 10000) in paragraph at lines 236--251
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 260--275
+Underfull \hbox (badness 10000) in paragraph at lines 236--251
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 260--275
+Underfull \hbox (badness 10000) in paragraph at lines 236--251
 
  []
 
-[10] (./porocilo.lof)
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 254--272
+
+ []
+
+<krizanje.png, id=173, 420.06938pt x 228.855pt>
+File: krizanje.png Graphic file (type png)
+ <use krizanje.png>
+Underfull \hbox (badness 10000) in paragraph at lines 273--296
+
+ []
+
+
+Overfull \hbox (9.59142pt too wide) in paragraph at lines 273--296
+\OT1/cmr/m/n/12 Uspe^^Tsnost pop-u-lacije ocen-ju-jemo z \OT1/cmr/m/it/12 min-i
+-max \OT1/cmr/m/n/12 al-go-rit-mom, ki ga ve^^Tckrat po^^Tzenemo
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--296
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--296
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--296
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--296
+
+ []
+
+
+Overfull \hbox (9.3345pt too wide) in paragraph at lines 273--296
+\OT1/cmr/m/n/12 jhno ver-jet-nos-tjo naklju^^Tcno spre-meni. Mu-tacija je glavn
+o orodje za prepre^^Tcevanje
+ []
+
+[10]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [11]
+<localmax.png, id=186, 626.34pt x 277.035pt>
+File: localmax.png Graphic file (type png)
+ <use localmax.png> [12 <./krizanje.png (PNG copy)>]
+Overfull \hbox (6.56232pt too wide) in paragraph at lines 311--312
+\OT1/cmr/m/n/12 reti^^Tcno dolo^^Tciti. Potrebno je pred-vsem do-bro poz-na-van
+je domene in preizku^^Tsanje
+ []
+
+
+Underfull \vbox (badness 5189) has occurred while \output is active []
+
+ [13 <./localmax.png (PNG copy)>] [14]
+Poglavje 3.
+<genetskiLifeDiff.png, id=204, 544.28343pt x 200.24812pt>
+File: genetskiLifeDiff.png Graphic file (type png)
+
+<use genetskiLifeDiff.png>
+Overfull \hbox (28.45276pt too wide) in paragraph at lines 342--343
+ [][] 
+ []
+
+
+Underfull \vbox (badness 1824) has occurred while \output is active []
+
+ [15
+
+]
+[16 <./genetskiLifeDiff.png (PNG copy)>] (./porocilo.lof)
 \tf@lof=\write5
 \openout5 = `porocilo.lof'.
 
- [11
+ [17
 
 ] (./porocilo.lot)
 \tf@lot=\write6
 \openout6 = `porocilo.lot'.
 
- [12
+[18
 
 ] (./porocilo.aux)
 
@@ -548,13 +674,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 3685 strings out of 95086
- 47649 string characters out of 1183255
- 113499 words of memory out of 1500000
- 6789 multiletter control sequences out of 10000+50000
- 10061 words of font info for 35 fonts, out of 1200000 for 2000
+ 4067 strings out of 95086
+ 51017 string characters out of 1183255
+ 118201 words of memory out of 1500000
+ 7142 multiletter control sequences out of 10000+50000
+ 12091 words of font info for 42 fonts, out of 1200000 for 2000
  28 hyphenation exceptions out of 8191
- 30i,12n,43p,1310b,359s stack positions out of 5000i,500n,6000p,200000b,5000s
+ 32i,12n,43p,1310b,359s stack positions out of 5000i,500n,6000p,200000b,5000s
 </usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmbx12.pfb></usr/share/texmf
 -texlive/fonts/type1/bluesky/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type
 1/bluesky/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmmi8.
@@ -563,9 +689,9 @@ f-texlive/fonts/type1/bluesky/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type
 1/bluesky/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmss12.p
 fb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmsy10.pfb></usr/share/texm
 f-texlive/fonts/type1/bluesky/cm/cmti12.pfb>
-Output written on porocilo.pdf (13 pages, 194562 bytes).
+Output written on porocilo.pdf (19 pages, 263341 bytes).
 PDF statistics:
- 212 PDF objects out of 1000 (max. 8388607)
- 36 named destinations out of 1000 (max. 131072)
- 152 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 281 PDF objects out of 1000 (max. 8388607)
+ 52 named destinations out of 1000 (max. 131072)
+ 199 words of extra memory for PDF output out of 10000 (max. 10000000)
 
