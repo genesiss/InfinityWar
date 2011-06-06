@@ -168,9 +168,9 @@ Fire & Strel s primarnim orožjem. Vsak strel pomeni zmanjšanje določene koli�
 Atribut & Opis Atributa \\ [0.5ex]
 %heading 
 \hline 
-Life & Celo število, ki opisuje količino življenja ob začetku igre.\\
+Life & Celo število, ki podaja preostalo življenje.\\
 Speed & Hitrost, ki opisuje za koliko kock se bojevnik lahko premakne ob premikih.\\
-Energy & Začetna energija bojevnika, ki jo lahko porabi za izvajanje akcij.\\ [1ex]
+Energy & Preostala energija bojevnika, ki jo lahko porabi za izvajanje akcij.\\ [1ex]
 \hline %inserts single line
 \end{tabular}
 \label{table:atributiBojevnikov} % is used to refer this table in the text
@@ -203,131 +203,80 @@ V tem poglavju bomo opisali uporabljene algoritme in načine izvajanja meritev. 
 \section{Simulacija igranja}
 Za simulacijo igranja igre smo uporabili algoritem \textit{minimax}. Z njim smo poskušali doseči, da igralca igrata čim bolj optimalno igro, tj. v danem trenutku izbereta najboljšo možno potezo.
 
-Algoritem se uporablja za minimizacijo možne izgube, pri maksimizaciji možnega dobička. V naši igri igralca izmenjujeta poteze in poskušata izbrati najboljšo svojo potezo oz. maksimizirati svojo vrednost, posledično pa minimizirati nasprotnikovo. Tako glede na trenutno pozicijo identificiramo igralca MIN in MAX. Tisti ki je na potezi predstavlja igralca MAX, nasprotnik pa igralca MIN. 
+\subsection{Algoritem minimax}
+Algoritem se uporablja za minimizacijo možne izgube, pri maksimizaciji možnega dobička. V naši igri igralca izmenjujeta poteze in poskušata izbrati najboljšo svojo potezo oz. maksimizirati svojo vrednost, posledično pa minimizirati nasprotnikovo. Tako glede na trenutno pozicijo identificiramo igralca MIN in MAX. Tisti ki je na potezi predstavlja igralca MAX, nasprotnik pa igralca MIN. Algoritem gradi drevo, kjer je v sodih nivojih (z začetkom v korenu) na potezi igralec MAX, na lihih pa igralec MIN. Na MAX nivojih, igralec vedno izbere stanje, ki maksimizira njegovo vrednost, na MIN nivojih pa igralec izbere stanje, ki minimizira njegovo vrednost (ker predpostavlja, da bo nasprotnik izvedel za njega najslabšo možno potezo). Naslednja poteza je tista poteza, ki jo igralec MAX izbere v korenskem vozlišču. Algoritem je predstavljen na Sliki ~\ref{fig:minimax}. Propagiranje vrednosti vozlišč poteka od spodaj navzgor, zato je potrebno te vrednosti določiti v listih. Ker je prostor preiskovanja prevelik (če bi lahko preiskali celoten prostor, bi v listih vedno imeli samo dve možnosti - zmago ali poraz), je potrebno višino drevesa omejiti, vrednost v listih pa določiti z neko hevristiko. Naša hevristika je predstavljena na ~\ref{eq:hevristika}. 
 
-
-
-
-\subsection{Zaznavanje prostora}
-Zaznavanje prostora je določeno z parametri okolja.  Agent zaznava kvadraten del prostora z središčem
-njegovega položaja. Agent ločuje med različnimi objekti v prostoru, kot so; zid, prazen prostor, nasprotnik, nasprotnikova baza,
-nasprotnikova zastava, njegova zastava, njegova baza in član njegove skupine z njegovo ID številko.
-
-
-\section{Akcije agenta}
-Agent lahko vpliva na okolje z; svojim gibanjem, z pošiljanjem sporočil in lahko nosi zastavo svoje ekipe.
-
-\subsection{Gibanje}
-Agent se lahko vedno premakne v katerokoli od štirih smeri (gor, dol, levo in desno), ne glede na to,
-kaj je takrat v tisti celici. V primeru da se želi premakniti v celico, ki je označena kot zid, izgubi
-življenje in se vrne v bazo, kjer zopet začne z novim preiskovanjem. Podobno se zgodi tudi takrat, če
-se premakne v celico, kjer je že eden od njegovih ali nasprotnikovih robotov. V tem primeru življenje izgubita oba.
-
-\subsection{Pošiljanje sporočil}
-Pošiljanje sporočil je omejeno z razdaljo med agenti. Trenutne nastavitve okolja omogočajo posredovanje sporočil
- le agentom, ki so znotraj vidnega polja. Sporočilo se pošlje s pomočjo ID številke agenta ki je v isti ekipi.
- Dolžina sporočila je omejena, prav tako pa so sankcionirani agenti, ki med seboj prekomerno komunicirajo.
-
-\subsection{Manipulacija z zastavo}
-Agent lahko pobere zastavo svoje ekipe, in jo odnese v svojo bazo. Če med vračanjem domov agent umre zaradi
-kakršnega koli vzroka, se zastava v zadnje obiskani celici spusti na tla in ostali agenti potem ko jo najdejo,
-nadaljujejo od tam naprej. Igra dopušča tudi možnost, da je na enkrat na zemljevidu postavljenih več zastav za eno ekipo.
-
-
-
-\chapter{Problemi na katere smo naleteli}
-
-\section{Raziskovanje}
-Pri raziskovanju prostora je pomembno, da si agenti čimbolj razdelijo prostor, ki ga preiskujejo. Pomembno je tudi,
-da preiščejo ves prostor, do katerega lahko pridejo (Dokler ne najdejo zastave).\\
-\\
-Razsikovanje je implementirano tako, da vse neobiskane celice oceni in nato izbere najboljšo. Ocena se izračuna na 
-podlagi tega, koliko novih celic odkrijemo če obiščemo to pozicijo, ta ocena je skalirana z razdaljo te pozicije od 
-trenutne pozicije. Majhen vpliv na oceno pa predstavlja bljižina zidu. Tem bližje kot smo zidu, tem manjša je ocena. 
-Do najboljše pozicije agent izdela plan poti s pomočjo algoritma A*.\\
-Ta strategija se je izkazala kot učinkovita, vendar se včasih izkaže, da na poti izpušča majhne kotičke, do katerih 
-mora naknadno dostopati, po seveda veliko daljši poti. Rešitev za ta problem bi bila, če bi agenta prisilili, da raje 
-izbira pot, ki je v ravni liniji.\\
-Da se agenti, ki ne utegnejo komunicirati med sabo (zaradi prevelike razdalje), nebi očali za isto pot, je v samo 
-hveristiko potrebno vnesti nek naključen člen. Ta vpliv pa mora biti seveda manjši od vseh ostalih. Ker je 
-agentov veliko smo implementirali, tako da so nekateri agenti bolj podvrženi naklučju in nekateri manj.
-
-\section{Iskanje poti do zastave}
-
-V primeru, ko se zastava agentove skupine pojavi v njegovem vidnem polju ve katera je njegova ciljna celica, 
-ni pa nujno da obstaja pot po raziskanem prostoru, do te celice. V primeru da pot obstaja, je problem trivialen 
-in agent gere po zastavo. V primeru ko pa poti ni, pa je potrebno prostor nadaljne raziskati. Na sliki \ref{grupe}
- so z svetlejšo barvo označeni predeli, do katerih s trenutnim znanjem agent ne zna priti.\\
 \begin{figure}[ht]
- \centering
- \includegraphics[width=7cm]{./pictures/Grupe.png}
- \caption[Agentova predstavitev sveta]{Agentova notranja predstavitev sveta}
- \label{grupe}
-\end{figure}
-\\
-V naši implementaciji agenta se s slednjim problemom soočamo tako, da agent sledi zidu v levo ali desno stran. 
-Tako so nekateri agenti levičarji in drugi desničarji, to se izračuna na podlagi njegove ID številke. Razdelitev 
-agentov na desničarje in levičarje nam reši dve stvari, to da agenti ne sledijo isti poti. Ter dopušča možnost, 
-da nek agent najde krajšo pot. Seveda vsem agentom, ki jih sreča na poti sporoči svoja spoznanja, tako da se lahko 
-zgodi, da manjkajoči del zemljevida izve od drugih agentov in problem postane zopet trivialen.
+\centering
 
-
-\section{Prenos zastave v domačo bazo}
-
-Ko agent pobere zastavo je njegova naloga, da jo prenese v bazo svoje skupine. Pri tem pa lahko
- naleti na agenta nasprotne ekipe, ki ga po vsej verjetnosti poizkušal ovirati na njegovi poti.
- Agentu ne preostane drugega, kakor da se mu umika. Vendar pa je gibanje agenta, ki nosi zastavo
- počasnejše od gibanja agenta, ki zastave nima. Tako da je v tem primeru situacija neizbežna. 
-Pomagamo si lahko le tako, da agenti iste skupine ščitijo agenta z zastavo.\\
-\\
-Agent s pomočjo algoritma A*, naredi plan do baze in ga izvaja. Slika \ref{plan} prikazuje izdelan 
-plan Agenta lahko ščitimo na dva načina. Prvi način je ta, da se z agentom, ki ne nosi zastave, 
-poizkušamo zaleteti v  agenta nasprotne skupine. Tako ima naš agent z zastavo prosto pot. 
-Drugi način pa je ta, da agent brez zastave le spremlja agenta, ki zastave nima. Ko se 
-nasprotnikov agent zaleti v agenta z zastavo (ob tem seveda oba agenta izgubita življenje), 
-tako lahko preživeli agent pobere zastavo in nadaljuje pot proti bazi. Odločili smo se za 
-implementacijo drugega primera ščitenja agentov, saj je lažji in prav tako učinkovit.\\
-\begin{figure}[ht]
- \centering
- \includegraphics[width=10cm]{./pictures/plan.png}
- \caption[Izdelan plan]{Agentov plan od zastave do baze}
- \label{plan}
+\[
+  val(n) = \left\{ 
+  \begin{array}{l l}
+    -1000 & \quad \textrm{če je igralec MAX mrtev}\\
+    +1000 & \quad \textrm{če je igralec MIN mrtev}\\
+    +1.0\cdot MaxLifeRatio-1.2\cdot MinLifeRatio+ \\+0.1
+ \cdot MaxEnergyRatio -0.1\cdot MinEnergyRatio & \quad \textrm{sicer}\\
+  \end{array} \right.
+\]
+\caption[Hevristika]{Hevristika. Členi v tretjem delu funkcije predstavljajo razmerje med trenutnimi in izačetnimi vrednostmi atributov. Intuitivno, hevristika bo ocenila stanje kot dobro, če je življenje MAX igralca visoko, MIN igralca nizko, energija MAX igralca visoka in MIN igralca nizka.}
+\label{eq:hevristika}
 \end{figure}
 
 
-\section{Srečanje z drugimi agenti}
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=10cm]{svg2raster.png}
+ \caption[Algoritem Minimax]{Algoritem minimax: slika predstavlja delovanje algoritma minimax. Številke v vozliščih predstavljajo vrednost posameznega stanja z vidika MAX igralca. Puščice predstavljajo propagacijo vrednosti od spodaj navzgor (igralec MIN na lihih nivojih izbira minimalno vrednost, izgralec MAX na sodih nivojih izbira maksimalno vrednost).}
+ \label{fig:minimax}
+\end{figure}
 
-Pri srečanju agenta iz iste ekipe, ob seveda prednosti komunikacije in posredovanja  medsebojnih informacij, 
-obstaja nevarnost medsebojnega trka. To predstavlja nevarnost, da dva agenta izgubita življenje dva agenta.\\
+\subsection{Problemi in prilagoditve}
+V naši igri pomembno vlogo igra tudi naključje. Akcija Fire ima definirano maksimalno in minimalno škodo, ki jo zadane nasprotniku. Vsakič ko bojevnik izbere to akcijo, se vrže kocka, ki z verjetnostjo 0.5 določi stopnjo škode (ali maksimalna ali minimalna). Zaradi naključnosti, rezultati minimax algoritma ob istih vhodnih podatkih niso vedno enaki. Da bi omilili vpliv naključnosti, je potrebno igro simulirati večkrat, kar privede do povečanja časovne kompleksnosti (sicer za konstanto, a ker se ena simulacija izvaja precej časa, že ta konstanta pomeni veliko razliko). Zato smo implementirali \textit{alfabeta} rezanje, ki ob zagotavljanju enake rešitve kot navaden \textit{minimax} v večini primerov zmanjša število evaluacij listov. Na Sliki ~\ref{fig:alfabeta} je prikazan minimax algoritem z alfabeta rezanjem.
 \\
-Ta problem smo rešili tako, da se agenti z nižjimi ID številkami ne ozirajo na agente z višjimi ID, jim pa 
-sporočijo svojo namero gibanja. Tako se lahko agenti z višjo ID prilagodi agentu z nižjo. Izjema je primer, 
-ko agent nosi zastavo, takrat ima ta agent prednost pred vsemi. Kako drugi agenti reagirajo na konfliktno 
-stanje je odvisno od njihovega notranjega stanja. Če iščejo zastavo 
-
-\subsection{Srečanje z agenti nasprotne ekipe}
-Če se agent sreča z agentom nasprotne skupine pomeni, da je v njegovem vidnem polju. V primeru, da je kateri
-izmed teh dveh agentov “nepazljiv” in se premakne v celico, kjer je drug agent, lahko pride do medsebojnega 
-trka. Če agentova strategija ni usmerjena k uničevanju drugih agentov in s tem posledično tudi samega sebe, 
-je edina logična pot ta, da se agenta poskušata zaobiti in s tem ohranita možnost iskanja vsak svoje zastave.\\
 \\
-Naši agenti so sprogramirani tako, da se poskušajo izogibati agentom nasprotne skupine. Ko se nasprotni
-agent približa našemu agentu na razjo ene celice, se naš agent premakne v nasprotno smer od sovražnega agenta.
-To pomeni, če naš agent vidi nasprotnika levo od svoje trenutne pozicije, se bo v naslenjem koraku premaknil desno,
-če tam seveda ni kakšne druge ovire (stena, agent). Izjema je primer ko je agent varovan oziroma ima spremstvo,
-torej nese zastavo proti bazi. V tem primeru, pa agent ne reagira na druge agente, temveč nese zastavo naravnost
-proti bazi.
+Z do zdaj opisanimi pravili igre se je pojavljal problem bežanja. Velikokrat se je zgodilo, da je bojevnik, ki je ugotovil da ne more zmagati, začel bežati pred drugim. Tako je igra trajala zelo dolgo ali pa se sploh ni končala. Zato smo v igro uvedli pravilo, da se bežočega bojevnika kaznuje. Pravilo smo definirali kot: če se nek bojevnik odmakne od drugega in ga v naslednji potezi nasprotnik zadane, se mu hitrost razpolovi. V primeru, da se bežoči umakne izven dosega nasprotnika, se nasprotniku moč zadetka zmanjša za $2^d$, kjer je d razdalja med bežočim in zunanjo mejo dosega akcije. Tako bežočega upočasnimo in damo nasprotniku možnost, da ga dohiti oziroma pokonča. Zdaj se bojevniki manjkrat odločajo za bežanje.
 
 
-\subsection{Žrtvovanje agenta} 
-Agenta ob trku oba izgubita življenje. Agent, ki izgubi življenje izgub vso informacijo, ki jo je do
-tistega trenutka pridobil. Tako, da je v interesu celotne skupine, da se agent takim situacijam izogiba.
-Vendar obstajajo situacije pri katerih, se izplača, da se agent žrtvuje. Primer take situacije je ko agent
-nasprotne skupine nosi v svojo bazo. Vendar senzorika nam te informacije ne posreduje.\\
-\\
-V naši implementaciji agenta smo tako ubali strategijo, da agent, ki je svojo informacijo pred kratkim
-(določeno s parametrom) predal naprej agentu z nižjim ID, ob morebitnem srečanju z nasprotnikom žrtvuje
-življenje in upa, da mu je povzročil čim več nevšečnosti.
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=10cm]{alfabeta.png}
+ \caption[Algoritem Minimax z alfabeta rezanjem.]{Algoritem minimax z alfabeta rezanjem: slika predstavlja delovanje algoritma minimax z alfabeta rezanjem. Za najblolj desen rez velja: V vozlišču je na potezi igralec MAX in bo vedno izbral vozlišče z maksimalno vrednostjo (trenutno je to vrednost 6). Na nivoju 1 je na potezi igralec MIN in bo vedno izbral minimalno vrednost (v najbolj desnem vozlišču na nivoju 1 je trenutno to 5). Ker pa že vemo, da ima eno izmed vozlišč na nivoju 1 vrednost 6 in ker bo igralec MIN v najbolj desnem vozlišču zagotovo izbral vozlišče z vrednostjo $<=$ 5 (ker imamo 5 že izračunano), lahko na označenem mestu opravimo rez.}
+ \label{fig:alfabeta}
+\end{figure}
+
+\subsection{Parametri algoritma}
+Simulaciji igranja iger je potrebno nastavit nekaj parametrov, ki vplivajo predvsem na hitrost izvajanja in natančnost rezultatov. Eden izmed parametrov je globina minimax drevesa. Globina nam uravnava stopnjo optimalnosti neke poteze, saj z večjo globino drevo razišče večji del prostora. Z večanjem globine, se časovna zahtevnost algoritma eksponentno povečuje. Mi smo se odločili, da bomo uporabljali globino 4
+
+\section{Optimizacija uravnoteženosti}
+Za uravnoteževanje bojevnikov smo uporabili genetske algoritme in hill climbing.
+
+\subsection{Genetski algoritmi}
+Genetski algoritmi so prilagodljive metode, ki jih uporabljamo za reševanje iskalnih in optimizacijskih problemov. Temeljijo na genetskem procesu bioloških organizmov, saj se zgledujejo po evoluciji v naravi, kjer se populacija neke vrste skozi generacije razvija po načelu naravnega izbora in preživetju uspešnejšega. Genetski algoritmi posnemajo tiste procese v naravi, ki so bistveni za evolucijo. V naravi posamezniki neke populacije med seboj tekmujejo za življenjsko pomembne vire. Hitrejši in pametnejši predstavniki vrste bodo imeli več in boljče vire za preživetje, počasnejši in manj pametni jih bodo dobili težje ali pa sploh ne. Ravno tako se pojavi tekmovanje pri iskanju partnerja za razmnoževanje. Tisti, ki so uspešnejši v preživetju in pri parjenju, bodo po vsej verjetnosti imeli relativno večje število potomcev. Slabši posamezniki jih bodo imeli manj ali pa sploh ne. To pomeni, da se bodo geni dobro prilagojenih oz. ustreznih posameznikov bolj razširili na prihodnje generacije, slabši pa bodo celo izumrli. Kombinacija genov dveh ustreznih staršev
+lahko privede do pojava super-ustreznega potomca, ki ima boljše lastnosti od obeh staršev. Na ta način se vrste razvijajo in prilagajajo na svoje okolje.
+Ti algoritmi delujejo po analogiji k temu naravnemu procesu. Delujejo nad neko populacijo osebkov (kromosomov), od katerih vsak predstavlja možno rešitev danega problema. Vsakemu kromosomu se priredi ocena uspešnosti, ki je prilagojena iskanemu problemu. Ustreznejši kromosomi - tisti z boljšo oceno - imajo več možnosti za reprodukcijo od ostalih. Nad trenutno populacijo izvedemo simuliran proces evolucije. Iz naše populacije izberemo podmnožico staršev, ki se razmnožujejo. Tako za našo populacijo dobimo nove potomce, ki prevzamejo nekaj lastnosti od vsakega starša. Manj ustrezni predstavniki se bodo razmnoževali z manjšo verjetnostjo in tako izumrli. Na ta način se dobre lastnosti razširijo v naslednje generacije. Če smo genetski algoritem dobro zastavili, bo populacija konvergirala k optimalni rešitvi.
+V nadaljevanju bomo predstavili konkretne značilnosti genetskih algoritmov za našo domeno.
+
+\subsubsection{Osnovni pojmi}
+\textit{Osebek} je možna rešitev problema. V naši domeni je osebek sestavljen iz dveh bojevnikov, oziroma množice atributov. Osebke imenujemo tudi \textit{kromosomi}.
+\\\\
+\textit{Geni} so posamezni atributi v osebku.
+\\\\
+\textit{Kriterijska funkcija} je funkcija, s katero ocenjujemo osebke. Pri nas je ta funkcija definirana kot $\frac{1}{LifeDiff}$, kjer je LifeDiff razlika med življenjema dveh bojevnikov v osebku, kot jo vrne algoritem za simulacijo igre.
+\\\\
+\textit{Populacija} je množica osebkov. Obdelujemo jo v korakih, ki jih imenujemo \textit{generacija}. Iz osebkov trenutne populacije (\textit{staršev}) tvorimo naslednike (\textit{potomce}), ki pripadajo populaciji naslednje generacije.
+\\\\
+\textit{Elita} je podmnožica najboljših osebkov v populaciji.
+\\\\
+\textit{Selekcija}
+\\\\
+\textit{Križanje}
+\\\\
+\textit{Mutacija}
+
+\subsection{Hill climbing}
+
+
+
 \newpage
 
 %********************************************

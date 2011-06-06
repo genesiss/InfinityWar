@@ -5,17 +5,11 @@
 \BOOKMARK [1][-]{section.1.3}{Opis problema}{chapter.1}
 \BOOKMARK [0][-]{chapter.2}{Metode dela}{}
 \BOOKMARK [1][-]{section.2.1}{Simulacija igranja}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.1.1}{Zaznavanje prostora}{section.2.1}
-\BOOKMARK [1][-]{section.2.2}{Akcije agenta}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.2.1}{Gibanje}{section.2.2}
-\BOOKMARK [2][-]{subsection.2.2.2}{Po\235iljanje sporocil}{section.2.2}
-\BOOKMARK [2][-]{subsection.2.2.3}{Manipulacija z zastavo}{section.2.2}
-\BOOKMARK [0][-]{chapter.3}{Problemi na katere smo naleteli}{}
-\BOOKMARK [1][-]{section.3.1}{Raziskovanje}{chapter.3}
-\BOOKMARK [1][-]{section.3.2}{Iskanje poti do zastave}{chapter.3}
-\BOOKMARK [1][-]{section.3.3}{Prenos zastave v domaco bazo}{chapter.3}
-\BOOKMARK [1][-]{section.3.4}{Srecanje z drugimi agenti}{chapter.3}
-\BOOKMARK [2][-]{subsection.3.4.1}{Srecanje z agenti nasprotne ekipe}{section.3.4}
-\BOOKMARK [2][-]{subsection.3.4.2}{Zrtvovanje agenta}{section.3.4}
-\BOOKMARK [0][-]{subsection.3.4.2}{Seznam slik}{}
-\BOOKMARK [0][-]{chapter*.3}{Seznam tabel}{}
+\BOOKMARK [2][-]{subsection.2.1.1}{Algoritem minimax}{section.2.1}
+\BOOKMARK [2][-]{subsection.2.1.2}{Problemi in prilagoditve}{section.2.1}
+\BOOKMARK [2][-]{subsection.2.1.3}{Parametri algoritma}{section.2.1}
+\BOOKMARK [1][-]{section.2.2}{Optimizacija uravnotezenosti}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.2.1}{Genetski algoritmi}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.2}{Hill climbing}{section.2.2}
+\BOOKMARK [0][-]{subsection.2.2.2}{Seznam slik}{}
+\BOOKMARK [0][-]{chapter*.4}{Seznam tabel}{}
