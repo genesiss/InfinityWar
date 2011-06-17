@@ -1,0 +1,40 @@
+2
+Tank 12 12
+- life: 195.0 195.0 175 200 5
+- Energy: 115.0 115.0 80 120 5
+- Speed: 4.0 4.0 2 4 1
+- Move:
+-- Move_Reach: 99999.0 99999.0 99999 99999 1
+-- Move_Max_dmg: 0.0 0.0 0 0 1
+-- Move_Min_dmg: 0.0 0.0 0 0 1
+-- Move_Energy_Needed: 21.0 21.0 20 25 1
+- Pass:
+-- Pass_Reach: 99999.0 99999.0 99999 99999 1
+-- Pass_Max_dmg: 0.0 0.0 0 0 1
+-- Pass_Min_dmg: 0.0 0.0 0 0 1
+-- Pass_Energy_Needed: -8.0 -8.0 -10 -5 1
+- Fire1:
+-- Fire1_Reach: 8.0 8.0 3 8 1
+-- Fire1_Max_dmg: 50.0 50.0 30 50 5
+-- Fire1_Min_dmg: 24.0 24.0 20 25 1
+-- Fire1_Energy_Needed: 35.0 35.0 25 40 5
+#
+Vojak 12 21
+- life: 120.0 120.0 100 150 5
+- Energy: 130.0 130.0 120 150 5
+- Speed: 6.0 6.0 4 6 1
+- Move:
+-- Move_Reach: 99999.0 99999.0 99999 99999 1
+-- Move_Max_dmg: 0.0 0.0 0 0 1
+-- Move_Min_dmg: 0.0 0.0 0 0 1
+-- Move_Energy_Needed: 10.0 10.0 5 20 5
+- Pass:
+-- Pass_Reach: 99999.0 99999.0 99999 99999 1
+-- Pass_Max_dmg: 0.0 0.0 0 0 1
+-- Pass_Min_dmg: 0.0 0.0 0 0 1
+-- Pass_Energy_Needed: -11.0 -11.0 -15 -10 1
+- Fire1:
+-- Fire1_Reach: 4.0 4.0 1 5 1
+-- Fire1_Max_dmg: 30.0 30.0 20 30 2
+-- Fire1_Min_dmg: 14.0 14.0 10 20 2
+-- Fire1_Energy_Needed: 21.0 21.0 15 25 2
